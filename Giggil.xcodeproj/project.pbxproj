@@ -1,0 +1,675 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7606674B23BA724B00F697EC /* NearbyUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606674A23BA724B00F697EC /* NearbyUsersVC.swift */; };
+		7606674D23BA731500F697EC /* NearbyUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606674C23BA731500F697EC /* NearbyUserCell.swift */; };
+		7606675123BC2BC100F697EC /* MessageSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606675023BC2BC100F697EC /* MessageSync.swift */; };
+		7606675323BD78B600F697EC /* ActiveSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606675223BD78B600F697EC /* ActiveSession.swift */; };
+		760A360C239C75A20057FA0C /* LocalChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A360B239C75A20057FA0C /* LocalChat.swift */; };
+		760A360E239C79AB0057FA0C /* MessageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A360D239C79AB0057FA0C /* MessageUtility.swift */; };
+		760A3610239C7FAB0057FA0C /* ProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A360F239C7FAB0057FA0C /* ProfileCollector.swift */; };
+		760A3612239EB9550057FA0C /* MessageBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A3611239EB9550057FA0C /* MessageBuffer.swift */; };
+		761C92422368D2E100A05F7A /* LocalNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C92412368D2E100A05F7A /* LocalNetwork.swift */; };
+		762723BE2358E59D00995466 /* GiggilClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762723BD2358E59D00995466 /* GiggilClaims.swift */; };
+		76562A3A23B2E477009062F0 /* QuickLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76562A3923B2E477009062F0 /* QuickLayout.swift */; };
+		7669B14A2366067C001A49E4 /* base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7669B1492366067C001A49E4 /* base.swift */; };
+		7679B67E2361279D00C87D17 /* DistributedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67D2361279D00C87D17 /* DistributedObjects.swift */; };
+		7679B68123612FA900C87D17 /* GiggilProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B68023612FA900C87D17 /* GiggilProfile.swift */; };
+		7688DB8D2377C6A300BDED94 /* SwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8C2377C6A300BDED94 /* SwitchVC.swift */; };
+		7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8E2377C6FD00BDED94 /* SwitchView.swift */; };
+		76AA5F8F2373E62A002670BD /* GiggilChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */; };
+		76C3290323B6DA0D0030745F /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3290223B6DA0D0030745F /* SettingsVC.swift */; };
+		76C3290523B6DA960030745F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3290423B6DA960030745F /* SettingsView.swift */; };
+		76D259732343ED7700D71169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D259722343ED7700D71169 /* AppDelegate.swift */; };
+		76D259772343ED7700D71169 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D259762343ED7700D71169 /* MainVC.swift */; };
+		76D2597F2343ED7B00D71169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D2597E2343ED7B00D71169 /* Assets.xcassets */; };
+		76D259822343ED7B00D71169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D259802343ED7B00D71169 /* LaunchScreen.storyboard */; };
+		76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */; };
+		76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */; };
+		FCE17B71235387ACEE3DD803 /* Pods_Giggil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C22EED866DF7966B325773 /* Pods_Giggil.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76EB6F2E23457F3D00FAD95D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D259672343ED7700D71169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76D2596E2343ED7700D71169;
+			remoteInfo = Giggil;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4091547E7561C975E65BA806 /* Pods-Giggil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil.debug.xcconfig"; path = "Target Support Files/Pods-Giggil/Pods-Giggil.debug.xcconfig"; sourceTree = "<group>"; };
+		64C22EED866DF7966B325773 /* Pods_Giggil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giggil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7606674A23BA724B00F697EC /* NearbyUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUsersVC.swift; sourceTree = "<group>"; };
+		7606674C23BA731500F697EC /* NearbyUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUserCell.swift; sourceTree = "<group>"; };
+		7606675023BC2BC100F697EC /* MessageSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSync.swift; sourceTree = "<group>"; };
+		7606675223BD78B600F697EC /* ActiveSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSession.swift; sourceTree = "<group>"; };
+		760A360B239C75A20057FA0C /* LocalChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChat.swift; sourceTree = "<group>"; };
+		760A360D239C79AB0057FA0C /* MessageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtility.swift; sourceTree = "<group>"; };
+		760A360F239C7FAB0057FA0C /* ProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollector.swift; sourceTree = "<group>"; };
+		760A3611239EB9550057FA0C /* MessageBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBuffer.swift; sourceTree = "<group>"; };
+		761C92412368D2E100A05F7A /* LocalNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetwork.swift; sourceTree = "<group>"; };
+		762723BD2358E59D00995466 /* GiggilClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilClaims.swift; sourceTree = "<group>"; };
+		76562A3923B2E477009062F0 /* QuickLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLayout.swift; sourceTree = "<group>"; };
+		7669B1492366067C001A49E4 /* base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = base.swift; sourceTree = "<group>"; };
+		766DA24123B2809300B35EBF /* VISION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VISION.md; sourceTree = "<group>"; };
+		7679B67D2361279D00C87D17 /* DistributedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedObjects.swift; sourceTree = "<group>"; };
+		7679B68023612FA900C87D17 /* GiggilProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilProfile.swift; sourceTree = "<group>"; };
+		7688DB8C2377C6A300BDED94 /* SwitchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchVC.swift; sourceTree = "<group>"; };
+		7688DB8E2377C6FD00BDED94 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilChatVC.swift; sourceTree = "<group>"; };
+		76C3290223B6DA0D0030745F /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		76C3290423B6DA960030745F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		76D2596F2343ED7700D71169 /* Giggil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giggil.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76D259722343ED7700D71169 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		76D259762343ED7700D71169 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		76D2597E2343ED7B00D71169 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76D259812343ED7B00D71169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		76D259832343ED7B00D71169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiggilMessage.swift; sourceTree = "<group>"; };
+		76EB6F2923457F3D00FAD95D /* GiggilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiggilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilTests.swift; sourceTree = "<group>"; };
+		76EB6F2D23457F3D00FAD95D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EEEA1A4C4E16E0127737BE1 /* Pods-Giggil.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil.release.xcconfig"; path = "Target Support Files/Pods-Giggil/Pods-Giggil.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76D2596C2343ED7700D71169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCE17B71235387ACEE3DD803 /* Pods_Giggil.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76EB6F2623457F3D00FAD95D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7692DB7F234E955200FCA11D /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */,
+				760A360D239C79AB0057FA0C /* MessageUtility.swift */,
+				762723BD2358E59D00995466 /* GiggilClaims.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		76C328FD23B6D8580030745F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				76562A3923B2E477009062F0 /* QuickLayout.swift */,
+				7606675223BD78B600F697EC /* ActiveSession.swift */,
+				7669B1492366067C001A49E4 /* base.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		76C328FE23B6D8810030745F /* MessageBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				760A360F239C7FAB0057FA0C /* ProfileCollector.swift */,
+				760A3611239EB9550057FA0C /* MessageBuffer.swift */,
+				761C92412368D2E100A05F7A /* LocalNetwork.swift */,
+				760A360B239C75A20057FA0C /* LocalChat.swift */,
+				7606675023BC2BC100F697EC /* MessageSync.swift */,
+			);
+			path = MessageBuffers;
+			sourceTree = "<group>";
+		};
+		76C328FF23B6D8A30030745F /* DistributedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				7679B68023612FA900C87D17 /* GiggilProfile.swift */,
+				7679B67D2361279D00C87D17 /* DistributedObjects.swift */,
+			);
+			path = DistributedObjects;
+			sourceTree = "<group>";
+		};
+		76C3290123B6D9210030745F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				76D2597E2343ED7B00D71169 /* Assets.xcassets */,
+				76D259802343ED7B00D71169 /* LaunchScreen.storyboard */,
+				76D259762343ED7700D71169 /* MainVC.swift */,
+				76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */,
+				7688DB8C2377C6A300BDED94 /* SwitchVC.swift */,
+				7688DB8E2377C6FD00BDED94 /* SwitchView.swift */,
+				76C3290223B6DA0D0030745F /* SettingsVC.swift */,
+				76C3290423B6DA960030745F /* SettingsView.swift */,
+				7606674A23BA724B00F697EC /* NearbyUsersVC.swift */,
+				7606674C23BA731500F697EC /* NearbyUserCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		76D259662343ED7700D71169 = {
+			isa = PBXGroup;
+			children = (
+				76D259712343ED7700D71169 /* Giggil */,
+				76EB6F2A23457F3D00FAD95D /* GiggilTests */,
+				76D259702343ED7700D71169 /* Products */,
+				FF5A3DCF4044656F4A6E8614 /* Pods */,
+				C3F12CEC6BB8122EF542F415 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		76D259702343ED7700D71169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76D2596F2343ED7700D71169 /* Giggil.app */,
+				76EB6F2923457F3D00FAD95D /* GiggilTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76D259712343ED7700D71169 /* Giggil */ = {
+			isa = PBXGroup;
+			children = (
+				76D259722343ED7700D71169 /* AppDelegate.swift */,
+				76C328FE23B6D8810030745F /* MessageBuffers */,
+				7692DB7F234E955200FCA11D /* Messages */,
+				76C328FD23B6D8580030745F /* Utility */,
+				76C328FF23B6D8A30030745F /* DistributedObjects */,
+				76C3290123B6D9210030745F /* UI */,
+				76D259832343ED7B00D71169 /* Info.plist */,
+				766DA24123B2809300B35EBF /* VISION.md */,
+			);
+			path = Giggil;
+			sourceTree = "<group>";
+		};
+		76EB6F2A23457F3D00FAD95D /* GiggilTests */ = {
+			isa = PBXGroup;
+			children = (
+				76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */,
+				76EB6F2D23457F3D00FAD95D /* Info.plist */,
+			);
+			path = GiggilTests;
+			sourceTree = "<group>";
+		};
+		C3F12CEC6BB8122EF542F415 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64C22EED866DF7966B325773 /* Pods_Giggil.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF5A3DCF4044656F4A6E8614 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4091547E7561C975E65BA806 /* Pods-Giggil.debug.xcconfig */,
+				7EEEA1A4C4E16E0127737BE1 /* Pods-Giggil.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		76D2596E2343ED7700D71169 /* Giggil */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76D259862343ED7C00D71169 /* Build configuration list for PBXNativeTarget "Giggil" */;
+			buildPhases = (
+				EA462291E7FDC2ACBC62F908 /* [CP] Check Pods Manifest.lock */,
+				76D2596B2343ED7700D71169 /* Sources */,
+				76D2596C2343ED7700D71169 /* Frameworks */,
+				76D2596D2343ED7700D71169 /* Resources */,
+				76509899234FFCC0006B9283 /* ShellScript */,
+				384268BE2AF4684B27A948D9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Giggil;
+			productName = Giggil;
+			productReference = 76D2596F2343ED7700D71169 /* Giggil.app */;
+			productType = "com.apple.product-type.application";
+		};
+		76EB6F2823457F3D00FAD95D /* GiggilTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76EB6F3023457F3D00FAD95D /* Build configuration list for PBXNativeTarget "GiggilTests" */;
+			buildPhases = (
+				76EB6F2523457F3D00FAD95D /* Sources */,
+				76EB6F2623457F3D00FAD95D /* Frameworks */,
+				76EB6F2723457F3D00FAD95D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76EB6F2F23457F3D00FAD95D /* PBXTargetDependency */,
+			);
+			name = GiggilTests;
+			productName = GiggilTests;
+			productReference = 76EB6F2923457F3D00FAD95D /* GiggilTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		76D259672343ED7700D71169 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = Fitchmun;
+				TargetAttributes = {
+					76D2596E2343ED7700D71169 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					76EB6F2823457F3D00FAD95D = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 76D2596E2343ED7700D71169;
+					};
+				};
+			};
+			buildConfigurationList = 76D2596A2343ED7700D71169 /* Build configuration list for PBXProject "Giggil" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 76D259662343ED7700D71169;
+			productRefGroup = 76D259702343ED7700D71169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				76D2596E2343ED7700D71169 /* Giggil */,
+				76EB6F2823457F3D00FAD95D /* GiggilTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		76D2596D2343ED7700D71169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76D259822343ED7B00D71169 /* LaunchScreen.storyboard in Resources */,
+				76D2597F2343ED7B00D71169 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76EB6F2723457F3D00FAD95D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		384268BE2AF4684B27A948D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Giggil/Pods-Giggil-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Giggil/Pods-Giggil-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Giggil/Pods-Giggil-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76509899234FFCC0006B9283 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  echo \"nah\" #swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA462291E7FDC2ACBC62F908 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Giggil-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		76D2596B2343ED7700D71169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76D259772343ED7700D71169 /* MainVC.swift in Sources */,
+				761C92422368D2E100A05F7A /* LocalNetwork.swift in Sources */,
+				76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */,
+				760A360E239C79AB0057FA0C /* MessageUtility.swift in Sources */,
+				760A3612239EB9550057FA0C /* MessageBuffer.swift in Sources */,
+				76562A3A23B2E477009062F0 /* QuickLayout.swift in Sources */,
+				76D259732343ED7700D71169 /* AppDelegate.swift in Sources */,
+				7679B67E2361279D00C87D17 /* DistributedObjects.swift in Sources */,
+				7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */,
+				7679B68123612FA900C87D17 /* GiggilProfile.swift in Sources */,
+				7688DB8D2377C6A300BDED94 /* SwitchVC.swift in Sources */,
+				7606675123BC2BC100F697EC /* MessageSync.swift in Sources */,
+				76AA5F8F2373E62A002670BD /* GiggilChatVC.swift in Sources */,
+				760A3610239C7FAB0057FA0C /* ProfileCollector.swift in Sources */,
+				7669B14A2366067C001A49E4 /* base.swift in Sources */,
+				7606674D23BA731500F697EC /* NearbyUserCell.swift in Sources */,
+				762723BE2358E59D00995466 /* GiggilClaims.swift in Sources */,
+				760A360C239C75A20057FA0C /* LocalChat.swift in Sources */,
+				76C3290323B6DA0D0030745F /* SettingsVC.swift in Sources */,
+				7606674B23BA724B00F697EC /* NearbyUsersVC.swift in Sources */,
+				7606675323BD78B600F697EC /* ActiveSession.swift in Sources */,
+				76C3290523B6DA960030745F /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76EB6F2523457F3D00FAD95D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76EB6F2F23457F3D00FAD95D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76D2596E2343ED7700D71169 /* Giggil */;
+			targetProxy = 76EB6F2E23457F3D00FAD95D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		76D259802343ED7B00D71169 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76D259812343ED7B00D71169 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		76D259842343ED7C00D71169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		76D259852343ED7C00D71169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		76D259872343ED7C00D71169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4091547E7561C975E65BA806 /* Pods-Giggil.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Giggil/Giggil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 6P4VLLNBK8;
+				INFOPLIST_FILE = Giggil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Fitchmun.Giggil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		76D259882343ED7C00D71169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EEEA1A4C4E16E0127737BE1 /* Pods-Giggil.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Giggil/Giggil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 6P4VLLNBK8;
+				INFOPLIST_FILE = Giggil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Fitchmun.Giggil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		76EB6F3123457F3D00FAD95D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6P4VLLNBK8;
+				INFOPLIST_FILE = GiggilTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Fitchmun.GiggilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giggil.app/Giggil";
+			};
+			name = Debug;
+		};
+		76EB6F3223457F3D00FAD95D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6P4VLLNBK8;
+				INFOPLIST_FILE = GiggilTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Fitchmun.GiggilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giggil.app/Giggil";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		76D2596A2343ED7700D71169 /* Build configuration list for PBXProject "Giggil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D259842343ED7C00D71169 /* Debug */,
+				76D259852343ED7C00D71169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76D259862343ED7C00D71169 /* Build configuration list for PBXNativeTarget "Giggil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D259872343ED7C00D71169 /* Debug */,
+				76D259882343ED7C00D71169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76EB6F3023457F3D00FAD95D /* Build configuration list for PBXNativeTarget "GiggilTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76EB6F3123457F3D00FAD95D /* Debug */,
+				76EB6F3223457F3D00FAD95D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 76D259672343ED7700D71169 /* Project object */;
+}

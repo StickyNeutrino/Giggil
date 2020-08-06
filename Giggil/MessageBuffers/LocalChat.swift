@@ -1,0 +1,87 @@
+//
+//  LocalChat.swift
+//  Giggil
+//
+//  Created by Daniel Fitchmun on 12/7/19.
+//  Copyright © 2019 Fitchmun. All rights reserved.
+//
+
+import Foundation
+import MessageKit
+import InputBarAccessoryView
+
+class LocalChat: MessageBuffer {
+
+    var messages = [GiggilMessage]()
+    
+    let queue: DispatchQueue
+    
+    init(pc: ProfileCollector){
+        let queueLabel = "Giggil.Local.queue"
+        
+        queue = DispatchQueue(label: queueLabel)
+        
+        super.init()
+        
+        pc.add(localListen)
+    }
+    
+    func send(_ text: String){
+        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else { return }
+        print("asdasd")
+        guard let myID = appDelegate.activeSession?.profile.session.id
+            else { return }
+
+        let unsigned = GiggilMessage(claims: [
+            .object: .data(Data(myID)),
+            .text: .text(text),
+            .sent: .date(Date())
+        ])
+        
+        let signed = appDelegate.sign(unsigned)
+        
+        queue.async {
+            self.insert(signed)
+            self.handle(message: signed, peer: myID)
+        }
+        
+        appDelegate.localNetwork?.sendAll(message: signed)
+    }
+    
+
+    
+    func insert(_ message: GiggilMessage) {
+        queue.async {
+            
+            if self.messages.contains(message){
+                return
+            }
+            
+            guard case let .date(sent) = message.claims[.sent]
+                else { return }
+            
+            let index = self.messages.firstIndex { (msg) -> Bool in
+                guard case let .date(test) = msg.claims[.sent]
+                    else { return false }
+                
+                return test > sent
+            }
+            
+            self.messages.insert(message, at: index ?? self.messages.endIndex)
+        }
+    }
+    
+    private func localListen(message: GiggilMessage, peer: Hash?) {
+        if message.tid == TEXT_MESSAGE {
+            insert(message)
+            handle(message: message, peer: peer)
+        }
+    }
+}
+
+extension LocalChat: MessageInputBarDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        send(text)
+    }
+}

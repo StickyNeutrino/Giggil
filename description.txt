@@ -1,0 +1,5 @@
+Giggil is an app that allows you to connect with people nearby.
+Open the app and you immediatly enter a local chat with everyone nearby.
+Securly chat over wifi and bluetooth (maximum range 200ft).
+
+Does not require (or use) an internet or cellular connection.

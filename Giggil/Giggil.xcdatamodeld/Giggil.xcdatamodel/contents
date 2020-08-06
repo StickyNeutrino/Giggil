@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Key" representedClassName="Key" syncable="YES" codeGenerationType="class">
+        <attribute name="raw" optional="YES" attributeType="Binary"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="original" optional="YES" attributeType="String"/>
+        <attribute name="tid" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
+        <relationship name="key" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Key"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message"/>
+        <relationship name="seed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message"/>
+    </entity>
+    <elements>
+        <element name="Message" positionX="-60.35546875" positionY="248.83984375" width="128" height="88"/>
+        <element name="Key" positionX="-429.83203125" positionY="233.19921875" width="128" height="58"/>
+        <element name="Profile" positionX="-248.43359375" positionY="213.09375" width="128" height="88"/>
+    </elements>
+</model>

@@ -107,7 +107,23 @@ extension LocalNetwork: MCNearbyServiceBrowserDelegate{
         
         queue.async {
             func validateKX(kx: GiggilMessage, session: GiggilMessage) -> Bool {
-                return true
+                guard case let .data(keyData) = session.claims[.key]
+                    else { return false }
+                
+                guard case let .data(id) = kx.claims[.object]
+                    else { return false }
+                
+                if id != Data(session.id) {
+                    return false
+                }
+                
+                let key = Sign.PublicKey(keyData)
+                
+                if kx.verify(key) && session.verify(key) {
+                    return true
+                }
+                
+                return false
             }
                     
             guard let sessionMessage = GiggilMessage(orig: info?["session"] ?? "")

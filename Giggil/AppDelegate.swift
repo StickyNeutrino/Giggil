@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var localNetwork: LocalNetwork?
     
-    var localChat: LocalChat?
+    var localChat = LocalChat()
     
     var activeSession: ActiveSession?
     
@@ -41,11 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         profileCollector = ProfileCollector(net: localNetwork!)
         
-        localChat = LocalChat(pc: profileCollector!)
+        messageSync = MessageSync(myID: activeSession!.profile.session.id)
         
-        //profileCollector?.newProfile(tmp)
-        
-        messageSync = MessageSync(lc: localChat!)
+        profileCollector!
+            .add(localChat.localListen)
+        localChat
+            .add(messageSync!.listener)
+
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -78,9 +80,7 @@ extension AppDelegate: MessagesDataSource {
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         
-        let message = localChat?.messages[indexPath.section]
-        
-        return toMessageKit(message!)
+        return toMessageKit(localChat.messages[indexPath.section])
     }
     
     func toMessageKit(_ message: GiggilMessage) -> MessageType {
@@ -121,7 +121,7 @@ extension AppDelegate: MessagesDataSource {
 
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        localChat?.messages.count ?? 0
+        localChat.messages.count
         
     }
     
@@ -140,7 +140,7 @@ extension AppDelegate: MessagesDataSource {
 
 extension AppDelegate: MessagesLayoutDelegate {
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-            if !(localChat?.isNamed(indexPath.section) ?? true) {
+        if !localChat.isNamed(indexPath.section) {
                 return 0
             }
 

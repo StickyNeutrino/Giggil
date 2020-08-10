@@ -14,31 +14,30 @@ class MessageSync {
     
     var messages = [GiggilMessage]()
     
-    init(lc: LocalChat){
-
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            else { return }
+    var listenID = Bytes()
+    
+    init(myID: Hash) {
         
-        if let myID = appDelegate.activeSession?.profile.session.id {
-        
-            lc.add{ (message, _) in
-                if message.tid != TEXT_MESSAGE {
-                    return
-                }
-                
-                guard case let .data(id) = message.claims[.object]
-                    else { return }
-                
-                if Bytes(id) == myID {
-                    self.messages.append(message)
-                }
-            }
-        }
+        listenID = myID
         
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (_) in
             self.prune()
         }
     }
+    
+    func listener(message: GiggilMessage, peer: Hash?) {
+        if message.tid != TEXT_MESSAGE {
+            return
+        }
+        
+        guard case let .data(id) = message.claims[.object]
+            else { return }
+        
+        if Bytes(id) == listenID {
+            self.messages.append(message)
+        }
+    }
+
     
     func prune() {
         messages = messages.filter { (message) -> Bool in

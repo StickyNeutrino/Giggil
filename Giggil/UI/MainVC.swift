@@ -54,7 +54,7 @@ class MainVC: SwitchVC {
                            else { return }
                 
                 let chatView = (self.rightVC as! GiggilChatVC).chatView
-                appDelegate.localChat?.queue.async {
+                appDelegate.localChat.queue.async {
                     DispatchQueue.main.sync  {
                         print("ZIIIIP") 
                         chatView.messagesCollectionView.reloadData()

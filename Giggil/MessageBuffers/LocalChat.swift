@@ -14,17 +14,7 @@ class LocalChat: MessageBuffer {
 
     var messages = [GiggilMessage]()
     
-    let queue: DispatchQueue
-    
-    init(pc: ProfileCollector){
-        let queueLabel = "Giggil.Local.queue"
-        
-        queue = DispatchQueue(label: queueLabel)
-        
-        super.init()
-        
-        pc.add(localListen)
-    }
+    let queue = DispatchQueue(label: "Giggil.Local.queue")
     
     func send(_ text: String){
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -72,7 +62,7 @@ class LocalChat: MessageBuffer {
         }
     }
     
-    private func localListen(message: GiggilMessage, peer: Hash?) {
+    func localListen(message: GiggilMessage, peer: Hash?) {
         if message.tid == TEXT_MESSAGE {
             insert(message)
             handle(message: message, peer: peer)

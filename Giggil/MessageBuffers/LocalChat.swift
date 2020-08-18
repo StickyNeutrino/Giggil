@@ -20,8 +20,7 @@ class LocalChat: MessageBuffer {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
         
-        guard let myID = appDelegate.activeSession?.profile.session.id
-            else { return }
+        let myID = appDelegate.activeSession.profile.session.id
 
         let unsigned = GiggilMessage(claims: [
             .object: .data(Data(myID)),

@@ -63,17 +63,18 @@ func saveProfile() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
         
-        if let profile = appDelegate.activeSession?.profile {
-            let seedOriginal = profile.session.original
-            let memberOriginals = profile.members().map { (message) -> String in
-                message.original
-            }
-            
-            var saveData = [seedOriginal]
-            saveData.append(contentsOf: memberOriginals)
-            
-            UserDefaults.standard.set(saveData, forKey: "profile")
+        let profile = appDelegate.activeSession.profile
+        
+        let seedOriginal = profile.session.original
+        let memberOriginals = profile.members().map { (message) -> String in
+            message.original
         }
+        
+        var saveData = [seedOriginal]
+        saveData.append(contentsOf: memberOriginals)
+        
+        UserDefaults.standard.set(saveData, forKey: "profile")
+        
     }
 }
 

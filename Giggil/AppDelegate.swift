@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var localChat = LocalChat()
     
-    var activeSession: ActiveSession?
+    let activeSession = getSession()
     
     var profileCollector: ProfileCollector?
     
@@ -33,15 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        
-        activeSession = getSession()
-        
+
         //Could just take a active session
-        localNetwork = LocalNetwork(me: activeSession!.profile, keys: activeSession!.keys)
+        localNetwork = LocalNetwork(me: activeSession.profile, keys: activeSession.keys)
         
         profileCollector = ProfileCollector(net: localNetwork!)
         
-        messageSync = MessageSync(myID: activeSession!.profile.session.id)
+        messageSync = MessageSync(myID: activeSession.profile.session.id)
         
         profileCollector!
             .add(localChat.localListen)
@@ -61,8 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     func sign(_ message: GiggilMessage) -> GiggilMessage {
-        guard let keys = activeSession?.keys
-            else { fatalError("Tryed to send with no session")}
+        let keys = activeSession.keys
         
         guard let signed = message.sign(keys)
             else { fatalError("failed to sign") }
@@ -74,8 +71,8 @@ extension AppDelegate {
 extension AppDelegate: MessagesDataSource {
     func currentSender() -> SenderType {
         Sender(
-            id: htos(activeSession!.profile.session.id),
-            displayName: activeSession!.profile.name)
+            id: htos(activeSession.profile.session.id),
+            displayName: activeSession.profile.name)
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -99,7 +96,7 @@ extension AppDelegate: MessagesDataSource {
         if case let .data(data) = message.claims[.object] {
             let hash = Bytes(data)
             
-            if hash == activeSession!.profile.session.id {
+            if hash == activeSession.profile.session.id {
                 sender = currentSender()
             } else {
                 sender = profileCollector!.idToSender(hash)

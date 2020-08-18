@@ -41,12 +41,10 @@ class SettingsVC : UIViewController {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
                 else { return }
             
-            guard let keys = appDelegate.activeSession?.keys
-                else { return }
+            let keys = appDelegate.activeSession.keys
             
-            guard let profileID = appDelegate.activeSession?.profile.session.id
-                else { return }
-            
+            let profileID = appDelegate.activeSession.profile.session.id
+
             guard let nameMsg = GiggilMessage(
                 claims: [
                     .object: .data(Data(profileID)),
@@ -58,7 +56,7 @@ class SettingsVC : UIViewController {
             
             var newMessages = [nameMsg]
             
-            for message in appDelegate.activeSession?.profile.members() ?? [] {
+            for message in appDelegate.activeSession.profile.members() {
                 if message.tid == PROFILE_NAME_MESSAGE {
                     guard let revoke = GiggilMessage(
                         claims: [
@@ -72,7 +70,7 @@ class SettingsVC : UIViewController {
                 }
             }
             
-            appDelegate.activeSession?.profile.add(newMessages)
+            appDelegate.activeSession.profile.add(newMessages)
             
             for message in newMessages {
                 appDelegate.localNetwork?.sendAll(message: message)

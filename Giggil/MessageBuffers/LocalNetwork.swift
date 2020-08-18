@@ -170,7 +170,7 @@ extension LocalNetwork: MCNearbyServiceBrowserDelegate{
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     else { return }
                 
-                for message in appDelegate.activeSession!.profile.members() {
+                for message in appDelegate.activeSession.profile.members() {
                         self.send(message, to: peer.id)
                 }
                 

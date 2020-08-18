@@ -30,6 +30,7 @@
 		76D259772343ED7700D71169 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D259762343ED7700D71169 /* MainVC.swift */; };
 		76D2597F2343ED7B00D71169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D2597E2343ED7B00D71169 /* Assets.xcassets */; };
 		76D259822343ED7B00D71169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D259802343ED7B00D71169 /* LaunchScreen.storyboard */; };
+		76EAD98D24EB55FE001435D5 /* GiggilMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */; };
 		76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */; };
 		76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */; };
 		FCE17B71235387ACEE3DD803 /* Pods_Giggil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C22EED866DF7966B325773 /* Pods_Giggil.framework */; };
@@ -74,6 +75,7 @@
 		76D2597E2343ED7B00D71169 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76D259812343ED7B00D71169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76D259832343ED7B00D71169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilMessageTests.swift; sourceTree = "<group>"; };
 		76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiggilMessage.swift; sourceTree = "<group>"; };
 		76EB6F2923457F3D00FAD95D /* GiggilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiggilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilTests.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */,
+				76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */,
 				76EB6F2D23457F3D00FAD95D /* Info.plist */,
 			);
 			path = GiggilTests;
@@ -411,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76EAD98D24EB55FE001435D5 /* GiggilMessageTests.swift in Sources */,
 				76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

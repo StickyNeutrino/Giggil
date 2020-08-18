@@ -27,13 +27,13 @@ class MainVC: SwitchVC {
         
         appDelegate.profileCollector?.add(reloadListener)
         
-        (rightVC as! GiggilChatVC)
+        (rightVC as! GiggilChatVC) //Fixme
             .messageInputBarDelegate = appDelegate.localChat
         
-        (rightVC as! GiggilChatVC)
+        (rightVC as! GiggilChatVC) //Fixme
             .messageDataSource = appDelegate
         
-        (rightVC as! GiggilChatVC)
+        (rightVC as! GiggilChatVC) //Fixme
             .messagesLayoutDelegate = appDelegate
         
         setSegmentNames(names: ["Nearby", "Chat"])

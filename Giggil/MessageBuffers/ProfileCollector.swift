@@ -70,7 +70,7 @@ class ProfileCollector: MessageBuffer {
     }
     
     private func localListen(message: GiggilMessage, peer: Hash?) {
-        print("BCA")
+        
         switch message.tid {
         case SESSION_MESSAGE:
             

@@ -71,11 +71,21 @@ class ProfileCollector: MessageBuffer {
     
     private func localListen(message: GiggilMessage, peer: Hash?) {
         
+        
+        guard case let .data(ID) = message.claims[.object]
+            else { return }
+        
+        if profiles[Bytes(ID)]?.verify(message) ?? false {
+            moveToTop(Bytes(ID))
+        } else {
+            print("Verify failed")
+            return
+        }
+        
         switch message.tid {
         case SESSION_MESSAGE:
             
             newProfile(message)
-            moveToTop(message.id)
             
         case PROFILE_NAME_MESSAGE,
              REVOKE_MESSAGE:
@@ -85,14 +95,7 @@ class ProfileCollector: MessageBuffer {
         default: break
         }
         
-        if case let .data(ID) = message.claims[.object] {
-            if profiles[Bytes(ID)]?.verify(message) ?? false {
-                moveToTop(Bytes(ID))
-                handle(message: message, peer: peer)
-            } else {
-                print("Verify failed")
-            }
-        }
+        handle(message: message, peer: peer)
     }
 }
 

@@ -149,6 +149,7 @@ extension AppDelegate: MessagesLayoutDelegate {
 }
 
 extension LocalChat {
+    //Only first message in a block get a user name
     func isNamed(_ index: Int) -> Bool {
         
         if index == 0 { return true }

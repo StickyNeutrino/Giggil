@@ -19,7 +19,7 @@ class LocalChat: MessageBuffer {
     func send(_ text: String){
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
-        print("asdasd")
+        
         guard let myID = appDelegate.activeSession?.profile.session.id
             else { return }
 
@@ -33,6 +33,7 @@ class LocalChat: MessageBuffer {
         
         queue.async {
             self.insert(signed)
+            //Might be source of concurrency issues
             self.handle(message: signed, peer: myID)
         }
         

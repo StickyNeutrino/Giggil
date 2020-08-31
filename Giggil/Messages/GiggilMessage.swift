@@ -22,9 +22,6 @@ struct GiggilMessage {
     
     let original: String
     
-    let id: Hash
-    let tid: Hash
-    
     init?(orig: String) {
         original = orig
         
@@ -43,16 +40,7 @@ struct GiggilMessage {
         
         claims = claim
         
-        if let typeID = tidCalc(claims: Array(claims.keys)){
-            tid = typeID
-        } else { return nil }
-        
         header = nil
-        
-        if let ID = sodium.genericHash.hash(message: body.bytes){
-            id = ID
-        } else { return nil }
-
     }
     
     init(claims: [claimKeys: claimValue]) {
@@ -67,13 +55,6 @@ struct GiggilMessage {
         
         self.claims = claims
         
-        if let typeID = tidCalc(claims: Array(claims.keys)){
-            tid = typeID
-        } else { fatalError() }
-        
-        if let ID = sodium.genericHash.hash(message: body.bytes){
-            id = ID
-        } else { fatalError() }
     }
     
     init(_ claimKeys: [claimKeys]) {
@@ -82,13 +63,14 @@ struct GiggilMessage {
         signature = nil
         original = ""
         
-        self.claims = [:]
+        var blankClaims : [claimKeys: claimValue] = [:]
         
-        if let typeID = tidCalc(claims: claimKeys ){
-            tid = typeID
-        } else { fatalError() }
+        for claim in claimKeys {
+            blankClaims[claim] = .bool(true)
+        }
         
-        id = Bytes()
+        self.claims = blankClaims
+
     }
     
     func sign(_ keys: Sign.KeyPair) -> GiggilMessage?{
@@ -141,5 +123,19 @@ extension GiggilMessage: Comparable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
+    }
+}
+
+extension GiggilMessage {
+    var id: Hash {
+        get {
+            return sodium.genericHash.hash(message: body.bytes)!
+        }
+    }
+    
+    var tid: Hash {
+        get {
+            return tidCalc(claims: Array(claims.keys))!
+        }
     }
 }

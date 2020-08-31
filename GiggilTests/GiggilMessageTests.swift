@@ -45,7 +45,18 @@ extension GiggilTests {
             XCTAssert(message == signedMessage)
         }
     }
-
+    
+    func testMessagesHaveDifferentIDs() {
+        for message in allMessages {
+            
+            let similars = allMessages.reduce(0) { (count, element) -> Int in
+                element.id == message.id ? count + 1 : count
+            }
+            
+            XCTAssert(similars == 1)
+        }
+    }
+    
     
     func testVerifyReturnsTrueWithPropperKey() {
 

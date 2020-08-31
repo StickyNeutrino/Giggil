@@ -23,6 +23,7 @@
 		7679B68123612FA900C87D17 /* GiggilProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B68023612FA900C87D17 /* GiggilProfile.swift */; };
 		7688DB8D2377C6A300BDED94 /* SwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8C2377C6A300BDED94 /* SwitchVC.swift */; };
 		7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8E2377C6FD00BDED94 /* SwitchView.swift */; };
+		7692955A24FD958A007DC0D9 /* SessionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692955924FD958A007DC0D9 /* SessionMessage.swift */; };
 		76AA5F8F2373E62A002670BD /* GiggilChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */; };
 		76C1107A24FD7CB40008C6C1 /* TestMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1107924FD7CB40008C6C1 /* TestMessages.swift */; };
 		76C3290323B6DA0D0030745F /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3290223B6DA0D0030745F /* SettingsVC.swift */; };
@@ -69,6 +70,7 @@
 		7679B68023612FA900C87D17 /* GiggilProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilProfile.swift; sourceTree = "<group>"; };
 		7688DB8C2377C6A300BDED94 /* SwitchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchVC.swift; sourceTree = "<group>"; };
 		7688DB8E2377C6FD00BDED94 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		7692955924FD958A007DC0D9 /* SessionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionMessage.swift; sourceTree = "<group>"; };
 		76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilChatVC.swift; sourceTree = "<group>"; };
 		76C1107924FD7CB40008C6C1 /* TestMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMessages.swift; sourceTree = "<group>"; };
 		76C3290223B6DA0D0030745F /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */,
 				760A360D239C79AB0057FA0C /* MessageUtility.swift */,
 				762723BD2358E59D00995466 /* GiggilClaims.swift */,
+				7692955924FD958A007DC0D9 /* SessionMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				760A3612239EB9550057FA0C /* MessageBuffer.swift in Sources */,
 				76562A3A23B2E477009062F0 /* QuickLayout.swift in Sources */,
 				76D259732343ED7700D71169 /* AppDelegate.swift in Sources */,
+				7692955A24FD958A007DC0D9 /* SessionMessage.swift in Sources */,
 				7679B67E2361279D00C87D17 /* DistributedObjects.swift in Sources */,
 				7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */,
 				7679B68123612FA900C87D17 /* GiggilProfile.swift in Sources */,

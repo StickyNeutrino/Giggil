@@ -14,7 +14,7 @@ typealias Hash = Bytes
 
 typealias Signature = Bytes
 
-struct GiggilMessage {
+class GiggilMessage {
     
     let header: String?
     let claims: [claimKeys: claimValue]

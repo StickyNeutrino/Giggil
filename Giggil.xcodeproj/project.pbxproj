@@ -33,6 +33,7 @@
 		76EAD98D24EB55FE001435D5 /* GiggilMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */; };
 		76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */; };
 		76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */; };
+		8B7844F7DA3777A68D3FBC0F /* Pods_Giggil_GiggilTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27471508E99D4333C82A97 /* Pods_Giggil_GiggilTests.framework */; };
 		FCE17B71235387ACEE3DD803 /* Pods_Giggil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C22EED866DF7966B325773 /* Pods_Giggil.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D27471508E99D4333C82A97 /* Pods_Giggil_GiggilTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giggil_GiggilTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4091547E7561C975E65BA806 /* Pods-Giggil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil.debug.xcconfig"; path = "Target Support Files/Pods-Giggil/Pods-Giggil.debug.xcconfig"; sourceTree = "<group>"; };
 		64C22EED866DF7966B325773 /* Pods_Giggil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giggil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7606674A23BA724B00F697EC /* NearbyUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUsersVC.swift; sourceTree = "<group>"; };
@@ -81,6 +83,10 @@
 		76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilTests.swift; sourceTree = "<group>"; };
 		76EB6F2D23457F3D00FAD95D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EEEA1A4C4E16E0127737BE1 /* Pods-Giggil.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil.release.xcconfig"; path = "Target Support Files/Pods-Giggil/Pods-Giggil.release.xcconfig"; sourceTree = "<group>"; };
+		9EC8635A4CFAB598F63D2935 /* Pods-Giggil-GiggilTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil-GiggilTests.release.xcconfig"; path = "Target Support Files/Pods-Giggil-GiggilTests/Pods-Giggil-GiggilTests.release.xcconfig"; sourceTree = "<group>"; };
+		CA6FD37E8824E6E4A45F8EBF /* Pods-GiggilTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiggilTests.release.xcconfig"; path = "Target Support Files/Pods-GiggilTests/Pods-GiggilTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7CA2539CC787E2380256749 /* Pods-GiggilTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiggilTests.debug.xcconfig"; path = "Target Support Files/Pods-GiggilTests/Pods-GiggilTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F3ECC3F533099FF7AA88601A /* Pods-Giggil-GiggilTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giggil-GiggilTests.debug.xcconfig"; path = "Target Support Files/Pods-Giggil-GiggilTests/Pods-Giggil-GiggilTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7844F7DA3777A68D3FBC0F /* Pods_Giggil_GiggilTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				64C22EED866DF7966B325773 /* Pods_Giggil.framework */,
+				0D27471508E99D4333C82A97 /* Pods_Giggil_GiggilTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,6 +226,10 @@
 			children = (
 				4091547E7561C975E65BA806 /* Pods-Giggil.debug.xcconfig */,
 				7EEEA1A4C4E16E0127737BE1 /* Pods-Giggil.release.xcconfig */,
+				D7CA2539CC787E2380256749 /* Pods-GiggilTests.debug.xcconfig */,
+				CA6FD37E8824E6E4A45F8EBF /* Pods-GiggilTests.release.xcconfig */,
+				F3ECC3F533099FF7AA88601A /* Pods-Giggil-GiggilTests.debug.xcconfig */,
+				9EC8635A4CFAB598F63D2935 /* Pods-Giggil-GiggilTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -249,9 +261,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76EB6F3023457F3D00FAD95D /* Build configuration list for PBXNativeTarget "GiggilTests" */;
 			buildPhases = (
+				2B02B5BE83AA32BF9DDF9ED8 /* [CP] Check Pods Manifest.lock */,
 				76EB6F2523457F3D00FAD95D /* Sources */,
 				76EB6F2623457F3D00FAD95D /* Frameworks */,
 				76EB6F2723457F3D00FAD95D /* Resources */,
+				AC080B1851D26430C46F4608 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -321,6 +335,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B02B5BE83AA32BF9DDF9ED8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Giggil-GiggilTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		384268BE2AF4684B27A948D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +390,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  echo \"nah\" #swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AC080B1851D26430C46F4608 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Giggil-GiggilTests/Pods-Giggil-GiggilTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Giggil-GiggilTests/Pods-Giggil-GiggilTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Giggil-GiggilTests/Pods-Giggil-GiggilTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA462291E7FDC2ACBC62F908 /* [CP] Check Pods Manifest.lock */ = {
@@ -603,6 +656,7 @@
 		};
 		76EB6F3123457F3D00FAD95D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3ECC3F533099FF7AA88601A /* Pods-Giggil-GiggilTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -624,6 +678,7 @@
 		};
 		76EB6F3223457F3D00FAD95D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EC8635A4CFAB598F63D2935 /* Pods-Giggil-GiggilTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

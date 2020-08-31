@@ -7,11 +7,20 @@
 //
 import XCTest
 import Foundation
-import Giggil
+@testable import Giggil
 
 extension GiggilTests {
     func testSigningPreservesID() {
         
+        let keys = sodium.sign.keyPair()!
+        
+        let message = GiggilMessage(claims: [.key : .data(Data(keys.publicKey))])
+        
+        let signedMessage = message.sign(keys)
+        
+        XCTAssert(message == signedMessage)
+        XCTAssert(message.id == signedMessage!.id)
+        XCTAssert(message.tid == signedMessage!.tid)
     }
     
     func testVerifyReturnsTrueWithPropperKey() {

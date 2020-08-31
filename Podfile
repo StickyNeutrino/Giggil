@@ -9,4 +9,10 @@ target 'Giggil' do
 	pod 'Sodium'
 	pod 'MessageKit'
 	pod 'MTSlideToOpen'
+
+
+  target 'GiggilTests' do
+      inherit! :complete
+  end
+
 end

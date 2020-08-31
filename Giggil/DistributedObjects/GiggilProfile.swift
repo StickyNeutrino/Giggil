@@ -15,14 +15,17 @@ class GiggilProfile: DistributedObject {
     let queue = DispatchQueue(label: "Giggil.Session.queue")
     
     var messages = [Hash: GiggilMessage]()
-
+    
+    init(_ session: SessionMessage) {
+        self.session = session
+    }
+    
     required init?(seed: GiggilMessage) {
         if seed.tid != SESSION_MESSAGE {
             return nil
         }
         
         self.session = seed
-
     }
     
     func add(_ newMessages: [GiggilMessage]) {

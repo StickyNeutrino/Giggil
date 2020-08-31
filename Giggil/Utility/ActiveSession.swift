@@ -48,9 +48,9 @@ func genSession() -> ActiveSession {
     let seed = sodium.randomBytes.buf(length: sodium.sign.SeedBytes)!
     let keys = sodium.sign.keyPair(seed: seed)!
     
-    let session = GiggilMessage(claims: [.key: .data(Data(keys.publicKey))]).sign(keys)!
+    let session = SessionMessage(keys: keys)
 
-    let activeSession = ActiveSession(profile: GiggilProfile(seed: session)!, keys: keys)
+    let activeSession = ActiveSession(profile: GiggilProfile(session), keys: keys)
     
     UserDefaults.standard.set([session.original], forKey: "profile")
     UserDefaults.standard.set(Data(seed), forKey: "seed")

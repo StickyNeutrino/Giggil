@@ -24,6 +24,7 @@
 		7688DB8D2377C6A300BDED94 /* SwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8C2377C6A300BDED94 /* SwitchVC.swift */; };
 		7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7688DB8E2377C6FD00BDED94 /* SwitchView.swift */; };
 		76AA5F8F2373E62A002670BD /* GiggilChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */; };
+		76C1107A24FD7CB40008C6C1 /* TestMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1107924FD7CB40008C6C1 /* TestMessages.swift */; };
 		76C3290323B6DA0D0030745F /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3290223B6DA0D0030745F /* SettingsVC.swift */; };
 		76C3290523B6DA960030745F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3290423B6DA960030745F /* SettingsView.swift */; };
 		76D259732343ED7700D71169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D259722343ED7700D71169 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		7688DB8C2377C6A300BDED94 /* SwitchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchVC.swift; sourceTree = "<group>"; };
 		7688DB8E2377C6FD00BDED94 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		76AA5F8E2373E62A002670BD /* GiggilChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilChatVC.swift; sourceTree = "<group>"; };
+		76C1107924FD7CB40008C6C1 /* TestMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMessages.swift; sourceTree = "<group>"; };
 		76C3290223B6DA0D0030745F /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		76C3290423B6DA960030745F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		76D2596F2343ED7700D71169 /* Giggil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giggil.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 				76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */,
 				76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */,
 				76EB6F2D23457F3D00FAD95D /* Info.plist */,
+				76C1107924FD7CB40008C6C1 /* TestMessages.swift */,
 			);
 			path = GiggilTests;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76EAD98D24EB55FE001435D5 /* GiggilMessageTests.swift in Sources */,
+				76C1107A24FD7CB40008C6C1 /* TestMessages.swift in Sources */,
 				76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

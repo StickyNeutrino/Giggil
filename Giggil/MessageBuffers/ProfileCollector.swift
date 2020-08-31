@@ -15,6 +15,8 @@ class ProfileCollector: MessageBuffer {
     var profiles = [Hash:GiggilProfile]()
     var order = [Hash]()
     
+    var blocked = [Hash]()
+    
     let queue: DispatchQueue
     
     init(net: LocalNetwork){
@@ -27,6 +29,12 @@ class ProfileCollector: MessageBuffer {
         net.add(localListen)
     }
 
+    func blockProfile(ID: Hash) {
+        queue.async {
+            return
+        }
+    }
+    
     func newProfile(_ message: GiggilMessage) {
         queue.async {
             self.profiles[message.id] = GiggilProfile(seed: message)
@@ -71,31 +79,32 @@ class ProfileCollector: MessageBuffer {
     
     private func localListen(message: GiggilMessage, peer: Hash?) {
         
+        queue.async {
         
-        guard case let .data(ID) = message.claims[.object]
-            else { return }
-        
-        if profiles[Bytes(ID)]?.verify(message) ?? false {
-            moveToTop(Bytes(ID))
-        } else {
-            print("Verify failed")
-            return
+            guard case let .data(ID) = message.claims[.object]
+                else { return }
+            
+            if self.profiles[Bytes(ID)]?.verify(message) ?? false {
+                self.moveToTop(Bytes(ID))
+                
+                switch message.tid {
+                    case PROFILE_NAME_MESSAGE,
+                                REVOKE_MESSAGE:
+                               
+                        self.updateProfile(message)
+                               
+                    default: break
+                           
+                }
+            } else if message.tid == SESSION_MESSAGE{
+                self.newProfile(message)
+            } else {
+                print("Verify failed")
+                return
+            }
+            
+            self.handle(message: message, peer: peer)
         }
-        
-        switch message.tid {
-        case SESSION_MESSAGE:
-            
-            newProfile(message)
-            
-        case PROFILE_NAME_MESSAGE,
-             REVOKE_MESSAGE:
-            
-            updateProfile(message)
-            
-        default: break
-        }
-        
-        handle(message: message, peer: peer)
     }
 }
 

@@ -62,6 +62,16 @@ class LocalChat: MessageBuffer {
         }
     }
     
+    func purge(userID: Hash) {
+        queue.async {
+            self.messages = self.messages.filter { (message) -> Bool in
+                guard case let .data(ID) = message.claims[.object]
+                    else { return false }
+                return userID != Hash(ID)
+            }
+        }
+    }
+    
     func localListen(message: GiggilMessage, peer: Hash?) {
         if message.tid == TEXT_MESSAGE {
             insert(message)

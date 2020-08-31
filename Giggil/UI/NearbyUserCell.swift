@@ -59,6 +59,14 @@ class NearbyUserCell: UITableViewCell {
         return label
     }()
     
+    let blockButton: UIButton = {
+        let button = UIButton()
+        
+        button.backgroundColor = .red
+        
+        return button
+    }()
+    
     func loadProfile(_ profile: GiggilProfile) {
         self.nameLabel.text = profile.name
         
@@ -83,6 +91,14 @@ class NearbyUserCell: UITableViewCell {
         [("top", "top", 10),
          ("left", "left", 8),
          ("width", "none", 150),
+         ("height", "none", 30)
+        ])
+        
+        contentView.addSubview(blockButton)
+        quickLayout(main: blockButton, other: nameLabel, constraints:
+        [("top", "bottom", 10),
+         ("left", "left", 0),
+         ("width", "none", 50),
          ("height", "none", 30)
         ])
 

@@ -18,10 +18,31 @@ extension GiggilTests {
         
         let signedMessage = message.sign(keys)
         
-        XCTAssert(message == signedMessage)
         XCTAssert(message.id == signedMessage!.id)
+    }
+    
+    func testSigningPreservesTID() {
+        
+        let keys = sodium.sign.keyPair()!
+        
+        let message = GiggilMessage(claims: [.key : .data(Data(keys.publicKey))])
+        
+        let signedMessage = message.sign(keys)
+        
         XCTAssert(message.tid == signedMessage!.tid)
     }
+    
+    func testSigningPreservesEquality() {
+        
+        let keys = sodium.sign.keyPair()!
+        
+        let message = GiggilMessage(claims: [.key : .data(Data(keys.publicKey))])
+        
+        let signedMessage = message.sign(keys)
+        
+        XCTAssert(message == signedMessage)
+    }
+
     
     func testVerifyReturnsTrueWithPropperKey() {
 

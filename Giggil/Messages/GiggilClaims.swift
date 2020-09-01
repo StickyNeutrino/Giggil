@@ -155,20 +155,20 @@ let TEXT_CLAIMS: [claimKeys] = [
     .sent,
 ]
 
-let TEXT_MESSAGE = GiggilMessage(TEXT_CLAIMS).tid
+let TEXT_MESSAGE = tidCalc(claims: TEXT_CLAIMS)!
 
 let REVOKE_CLAIMS: [claimKeys] = [
     .object,
     .prev
 ]
 
-let REVOKE_MESSAGE = GiggilMessage(REVOKE_CLAIMS).tid
+let REVOKE_MESSAGE = tidCalc(claims: REVOKE_CLAIMS)!
 
 let SESSION_CLAIMS: [claimKeys] = [
     .key
 ]
 
-let SESSION_MESSAGE = GiggilMessage(SESSION_CLAIMS).tid
+let SESSION_MESSAGE = tidCalc(claims: SESSION_CLAIMS)!
 
 let PROFILE_NAME_CLAIMS: [claimKeys] = [
     .object,
@@ -176,13 +176,13 @@ let PROFILE_NAME_CLAIMS: [claimKeys] = [
     .name
 ]
 
-let PROFILE_NAME_MESSAGE = GiggilMessage(PROFILE_NAME_CLAIMS).tid
+let PROFILE_NAME_MESSAGE = tidCalc(claims: PROFILE_NAME_CLAIMS)!
 
 let KEY_EXCHANGE_CLAIMS: [claimKeys] = [
     .key,
     .object,
 ]
 
-let KEY_EXCHANGE_MESSAGE = GiggilMessage(KEY_EXCHANGE_CLAIMS).tid
+let KEY_EXCHANGE_MESSAGE = tidCalc(claims: KEY_EXCHANGE_CLAIMS)!
 
 

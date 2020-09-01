@@ -56,23 +56,7 @@ class GiggilMessage {
         self.claims = claims
         
     }
-    
-    init(_ claimKeys: [claimKeys]) {
-        
-        header = nil
-        signature = nil
-        original = ""
-        
-        var blankClaims : [claimKeys: claimValue] = [:]
-        
-        for claim in claimKeys {
-            blankClaims[claim] = .bool(true)
-        }
-        
-        self.claims = blankClaims
 
-    }
-    
     func sign(_ keys: Sign.KeyPair) -> GiggilMessage?{
         guard let bytes = sodium.sign.signature(
             message: body.bytes,

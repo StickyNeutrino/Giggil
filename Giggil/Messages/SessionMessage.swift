@@ -13,7 +13,7 @@ class SessionMessage : GiggilMessage {
     override init?(orig: String) {
         super.init(orig: orig)
         
-        if self.id != SESSION_MESSAGE {
+        if self.tid != SESSION_MESSAGE {
             return nil
         }
     }

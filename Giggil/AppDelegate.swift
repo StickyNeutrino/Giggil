@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var messageSync: MessageSync?
     
+    var reloadChat: (() -> ())? = nil
+    
     // MARK: - Init Base VC
     func application(
         _ application: UIApplication,
@@ -49,7 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        self.window!.rootViewController = MainVC()
+        let vc = MainVC()
+        
+        reloadChat = vc.reloadChat
+        
+        self.window!.rootViewController = vc
         self.window!.makeKeyAndVisible()
     
         
@@ -76,8 +82,9 @@ extension AppDelegate: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        
-        return toMessageKit(localChat.messages[indexPath.section])
+        localChat.queue.sync {
+            return toMessageKit(localChat.messages[indexPath.section])
+        }
     }
     
     func toMessageKit(_ message: GiggilMessage) -> MessageType {
@@ -118,7 +125,7 @@ extension AppDelegate: MessagesDataSource {
 
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        localChat.queue.sync{
+        localChat.queue.sync {
             localChat.messages.count
         }
     }

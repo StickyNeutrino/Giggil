@@ -48,10 +48,14 @@ class MainVC: SwitchVC {
         if message.tid  == TEXT_MESSAGE
         || message.tid == PROFILE_NAME_MESSAGE
         || message.tid == REVOKE_MESSAGE {
-            DispatchQueue.main.async {
-                let chatView = (self.rightVC as! GiggilChatVC).chatView
-                chatView.messagesCollectionView.reloadData()
-            }
+            reloadChat()
+        }
+    }
+    
+    func reloadChat() {
+        DispatchQueue.main.async {
+            let chatView = (self.rightVC as! GiggilChatVC).chatView
+            chatView.messagesCollectionView.reloadData()
         }
     }
     

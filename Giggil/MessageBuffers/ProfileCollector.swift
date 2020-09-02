@@ -128,8 +128,18 @@ extension ProfileCollector: UITableViewDataSource {
             
             cell.loadProfile(profile)
             
+            cell.blockCallback = {
+                self.blocked[profile.session.id] = true
+                
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    else { return }
+                
+                appDelegate.localChat.purge(userID: profile.session.id)
+                
+                appDelegate.reloadChat?()
+            }
+            
             return cell
         }
     }
-
 }

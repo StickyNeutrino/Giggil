@@ -58,6 +58,7 @@ class NearbyUserCell: UITableViewCell {
         
         return label
     }()
+    var blockCallback: (()->())? = nil
     
     let blockButton: UIButton = {
         let button = UIButton()
@@ -66,6 +67,10 @@ class NearbyUserCell: UITableViewCell {
         
         return button
     }()
+    
+    @objc func block() {
+        blockCallback?()
+    }
     
     func loadProfile(_ profile: GiggilProfile) {
         self.nameLabel.text = profile.name
@@ -94,6 +99,7 @@ class NearbyUserCell: UITableViewCell {
          ("height", "none", 30)
         ])
         
+        blockButton.addTarget(self, action: #selector(block), for: .primaryActionTriggered)
         contentView.addSubview(blockButton)
         quickLayout(main: blockButton, other: nameLabel, constraints:
         [("top", "bottom", 10),

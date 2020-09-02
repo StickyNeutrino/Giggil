@@ -84,23 +84,19 @@ class ProfileCollector: MessageBuffer {
             guard case let .data(ID) = message.claims[.object]
                 else { return }
             
-            if self.profiles[Bytes(ID)]?.verify(message) ?? false {
-                self.moveToTop(Bytes(ID))
+            self.moveToTop(Bytes(ID))
                 
-                switch message.tid {
-                    case PROFILE_NAME_MESSAGE,
-                                REVOKE_MESSAGE:
-                               
-                        self.updateProfile(message)
-                               
-                    default: break
+            switch message.tid {
+                case PROFILE_NAME_MESSAGE,
+                            REVOKE_MESSAGE:
                            
-                }
-            } else if message.tid == SESSION_MESSAGE{
+                    self.updateProfile(message)
+                       
+            case SESSION_MESSAGE:
+                
                 self.newProfile(message)
-            } else {
-                print("Verify failed")
-                return
+                
+            default: break
             }
             
             self.handle(message: message, peer: peer)

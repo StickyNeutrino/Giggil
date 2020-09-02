@@ -27,3 +27,19 @@ class SessionMessage : GiggilMessage {
         super.init(claims: claims)
     }
 }
+
+extension SessionMessage {
+    
+    var key : Bytes {
+        get {
+            guard case let .data(mainKey) = claims[.key]
+                else { fatalError() }
+            
+            return Bytes(mainKey)
+        }
+    }
+    
+    func verify(_ message: GiggilMessage) -> Bool {
+        return message.verify(key)
+    }
+}

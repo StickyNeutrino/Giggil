@@ -31,11 +31,10 @@ func loadSession() -> ActiveSession? {
     
     if messages.count == 0 { return nil }
     
-    guard let session = GiggilMessage(orig: messages[0] )
+    guard let session = SessionMessage(orig: messages[0] )
         else { return nil }
     
-    guard let profile = GiggilProfile(seed: session)
-        else { return nil }
+    let profile = GiggilProfile(session)
     
     for message in messages.suffix(from: 1) {
         profile.add([GiggilMessage(orig: message)!])

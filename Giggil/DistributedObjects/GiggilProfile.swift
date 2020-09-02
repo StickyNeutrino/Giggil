@@ -10,7 +10,7 @@ import Foundation
 
 class GiggilProfile: DistributedObject {
     
-    let session: GiggilMessage
+    let session: SessionMessage
     
     let queue = DispatchQueue(label: "Giggil.Session.queue")
     
@@ -25,14 +25,14 @@ class GiggilProfile: DistributedObject {
             return nil
         }
         
-        self.session = seed
+        self.session = SessionMessage(orig: seed.original)!
     }
     
     func add(_ newMessages: [GiggilMessage]) {
         queue.async {
             for message in newMessages {
                 
-                if !self.verify(message) {
+                if !self.session.verify(message) {
                     continue
                 } else {
                     self.messages[message.id] = message
@@ -80,9 +80,6 @@ extension GiggilProfile {
     }
     
     func verify(_ message: GiggilMessage) -> Bool {
-        guard case let .data(mainKey) = self.session.claims[.key]
-            else { fatalError() }
-        
-        return message.verify(Bytes(mainKey))
+        session.verify(message)
     }
 }

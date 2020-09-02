@@ -41,8 +41,6 @@ class ProfileCollector: MessageBuffer {
             
             profile.add(self.handle(message:peer:))
             
-            self.add(profile.listener(message:hash:))
-            
             self.profiles[message.id] = profile
         
         }
@@ -56,6 +54,8 @@ class ProfileCollector: MessageBuffer {
             
 
             self.profiles[Bytes(ID)]?.add([message])
+            
+            self.profiles[Bytes(ID)]?.listener(message: message, hash: nil)
         }
     }
     
@@ -87,26 +87,19 @@ class ProfileCollector: MessageBuffer {
     private func localListen(message: GiggilMessage, peer: Hash?) {
         
         queue.async {
-        
-            guard case let .data(ID) = message.claims[.object]
-                else { return }
-            
-            self.moveToTop(Bytes(ID))
-                
             switch message.tid {
-                case PROFILE_NAME_MESSAGE,
-                            REVOKE_MESSAGE:
-                           
-                    self.updateProfile(message)
-                       
             case SESSION_MESSAGE:
                 
                 self.newProfile(message)
                 
-            default: break
+            default:
+                self.updateProfile(message)
             }
             
-            self.handle(message: message, peer: peer)
+            guard case let .data(ID) = message.claims[.object]
+                else { return }
+            
+            self.moveToTop(Bytes(ID))
         }
     }
 }

@@ -78,8 +78,4 @@ extension GiggilProfile {
             return names.max() ?? "Unknown User"
         }
     }
-    
-    func verify(_ message: GiggilMessage) -> Bool {
-        session.verify(message)
-    }
 }

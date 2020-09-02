@@ -49,16 +49,8 @@ class MainVC: SwitchVC {
         || message.tid == PROFILE_NAME_MESSAGE
         || message.tid == REVOKE_MESSAGE {
             DispatchQueue.main.async {
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                           else { return }
-                
                 let chatView = (self.rightVC as! GiggilChatVC).chatView
-                appDelegate.localChat.queue.async {
-                    DispatchQueue.main.sync  {
-                        chatView.messagesCollectionView.reloadData()
-                    }
-                }
-                
+                chatView.messagesCollectionView.reloadData()
             }
         }
     }

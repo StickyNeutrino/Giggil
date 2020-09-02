@@ -118,8 +118,9 @@ extension AppDelegate: MessagesDataSource {
 
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        localChat.messages.count
-        
+        localChat.queue.sync{
+            localChat.messages.count
+        }
     }
     
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {

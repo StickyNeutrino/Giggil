@@ -139,17 +139,10 @@
 				760A3611239EB9550057FA0C /* MessageBuffer.swift */,
 				761C92412368D2E100A05F7A /* LocalNetwork.swift */,
 				760A360B239C75A20057FA0C /* LocalChat.swift */,
+				7679B68023612FA900C87D17 /* GiggilProfile.swift */,
 				7606675023BC2BC100F697EC /* MessageSync.swift */,
 			);
 			path = MessageBuffers;
-			sourceTree = "<group>";
-		};
-		76C328FF23B6D8A30030745F /* DistributedObjects */ = {
-			isa = PBXGroup;
-			children = (
-				7679B68023612FA900C87D17 /* GiggilProfile.swift */,
-			);
-			path = DistributedObjects;
 			sourceTree = "<group>";
 		};
 		76C3290123B6D9210030745F /* UI */ = {
@@ -196,7 +189,6 @@
 				76C328FE23B6D8810030745F /* MessageBuffers */,
 				7692DB7F234E955200FCA11D /* Messages */,
 				76C328FD23B6D8580030745F /* Utility */,
-				76C328FF23B6D8A30030745F /* DistributedObjects */,
 				76C3290123B6D9210030745F /* UI */,
 				76D259832343ED7B00D71169 /* Info.plist */,
 				766DA24123B2809300B35EBF /* VISION.md */,

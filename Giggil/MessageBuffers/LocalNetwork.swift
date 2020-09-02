@@ -126,7 +126,7 @@ extension LocalNetwork: MCNearbyServiceBrowserDelegate{
                 return false
             }
                     
-            guard let sessionMessage = GiggilMessage(orig: info?["session"] ?? "")
+            guard let sessionMessage = SessionMessage(orig: info?["session"] ?? "")
                 else { return }
             
             guard let kxMessage = GiggilMessage(orig: info?["kx"] ?? "")

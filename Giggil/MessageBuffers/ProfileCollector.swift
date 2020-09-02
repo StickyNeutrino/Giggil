@@ -37,7 +37,14 @@ class ProfileCollector: MessageBuffer {
     
     func newProfile(_ message: GiggilMessage) {
         queue.async {
-            self.profiles[message.id] = GiggilProfile(seed: message)
+            let profile = GiggilProfile(seed: message)!
+            
+            profile.add(self.handle(message:peer:))
+            
+            self.add(profile.listener(message:hash:))
+            
+            self.profiles[message.id] = profile
+        
         }
     }
     

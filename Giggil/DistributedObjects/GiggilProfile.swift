@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GiggilProfile: DistributedObject {
+class GiggilProfile: MessageBuffer, DistributedObject {
     
     let session: SessionMessage
     
@@ -56,7 +56,16 @@ class GiggilProfile: DistributedObject {
             return Array(self.messages.values)
         }
     }
+    
+    func listener(message: GiggilMessage, hash: Hash?) {
+        queue.async {
+            if self.session.verify(message) {
+                self.handle(message: message, peer: hash)
+            }
+        }
+    }
 }
+
 
 import Sodium
 

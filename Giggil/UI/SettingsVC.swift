@@ -70,9 +70,8 @@ class SettingsVC : UIViewController {
                 }
             }
             
-            appDelegate.activeSession.profile.add(newMessages)
-            
             for message in newMessages {
+                appDelegate.activeSession.profile.listener(message: message, hash: nil)
                 appDelegate.localNetwork?.sendAll(message: message)
             }
             

@@ -62,9 +62,6 @@ class ProfileCollector: MessageBuffer {
             guard case let .data(ID) = message.claims[.object]
                 else { return }
             
-
-            self.profiles[Bytes(ID)]?.add([message])
-            
             self.profiles[Bytes(ID)]?.listener(message: message, hash: nil)
         }
     }

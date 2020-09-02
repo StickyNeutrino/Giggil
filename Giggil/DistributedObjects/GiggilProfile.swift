@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GiggilProfile: MessageBuffer, DistributedObject {
+class GiggilProfile: MessageBuffer {
     
     let session: SessionMessage
     
@@ -28,29 +28,6 @@ class GiggilProfile: MessageBuffer, DistributedObject {
         self.session = SessionMessage(orig: seed.original)!
     }
     
-    func add(_ newMessages: [GiggilMessage]) {
-        queue.async {
-            for message in newMessages {
-                
-                if !self.session.verify(message) {
-                    continue
-                } else {
-                    self.messages[message.id] = message
-                }
-                
-                switch message.tid {
-                case REVOKE_MESSAGE:
-                    guard case let .data(revoked) = message.claims[.prev]
-                        else { fatalError() }
-                    
-                    self.messages[Bytes(revoked)] = nil
-                default:
-                    continue
-                }
-            }
-        }
-    }
-    
     func members() -> [GiggilMessage] {
         queue.sync {
             return Array(self.messages.values)
@@ -61,6 +38,18 @@ class GiggilProfile: MessageBuffer, DistributedObject {
         queue.async {
             if self.session.verify(message) {
                 self.handle(message: message, peer: hash)
+                
+                self.messages[message.id] = message
+                
+                switch message.tid {
+                case REVOKE_MESSAGE:
+                    guard case let .data(revoked) = message.claims[.prev]
+                        else { fatalError() }
+                    
+                    self.messages[Bytes(revoked)] = nil
+                default:
+                    break
+                }
             }
         }
     }

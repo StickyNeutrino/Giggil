@@ -15,7 +15,7 @@ class ProfileCollector: MessageBuffer {
     var profiles = [Hash:GiggilProfile]()
     var order = [Hash]()
     
-    var blocked = [Hash]()
+    var blocked = [Hash:Bool]()
     
     let queue: DispatchQueue
     
@@ -31,7 +31,7 @@ class ProfileCollector: MessageBuffer {
 
     func blockProfile(ID: Hash) {
         queue.async {
-            return
+            self.blocked[ID] = true
         }
     }
     
@@ -39,7 +39,17 @@ class ProfileCollector: MessageBuffer {
         queue.async {
             let profile = GiggilProfile(seed: message)!
             
-            profile.add(self.handle(message:peer:))
+            func blockableListener(message:GiggilMessage, peer: Hash?) {
+                self.queue.async {
+                    if self.blocked[ profile.session.id ] ?? false {
+                        return
+                    }
+                    
+                    self.handle(message: message, peer: peer)
+                }
+            }
+            
+            profile.add(blockableListener)
             
             self.profiles[message.id] = profile
         

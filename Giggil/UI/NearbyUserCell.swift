@@ -63,7 +63,8 @@ class NearbyUserCell: UITableViewCell {
     let blockButton: UIButton = {
         let button = UIButton()
         
-        button.backgroundColor = .red
+        button.setTitle("Block", for: .normal)
+        button.setTitleColor(.red, for: .normal)
         
         return button
     }()

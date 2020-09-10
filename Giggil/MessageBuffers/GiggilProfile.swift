@@ -16,6 +16,8 @@ class GiggilProfile: MessageBuffer {
     
     var messages = [Hash: GiggilMessage]()
     
+    var revoked = [Hash: Bool]()
+    
     init(_ session: SessionMessage) {
         self.session = session
     }
@@ -46,7 +48,7 @@ class GiggilProfile: MessageBuffer {
                     guard case let .data(revoked) = message.claims[.prev]
                         else { fatalError() }
                     
-                    self.messages[Bytes(revoked)] = nil
+                    self.revoked[Bytes(revoked)] = true
                 default:
                     break
                 }
@@ -66,6 +68,10 @@ extension GiggilProfile {
             var names = [String]()
             
             for message in messages.values {
+                if revoked[message.id] == true {
+                    continue
+                }
+                
                 if message.tid == PROFILE_NAME_MESSAGE {
                     if case let .text(name) = message.claims[.name] {
                         names.append(name)

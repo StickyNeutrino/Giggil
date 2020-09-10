@@ -25,7 +25,7 @@ class MessageSync {
         }
     }
     
-    func listener(message: GiggilMessage, peer: Hash?) {
+    func listener(message: GiggilMessage) {
         if message.tid != TEXT_MESSAGE {
             return
         }

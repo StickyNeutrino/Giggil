@@ -12,9 +12,9 @@ class MessageBuffer: NSObject {
     
     let listenerQueue = DispatchQueue(label: "Giggil.Buffer.queue")
     
-    private var listeners = [   Int: (GiggilMessage, Hash?) -> Void   ]    ()
+    private var listeners = [   Int: (GiggilMessage) -> Void   ]    ()
     
-    func add(_ listener: @escaping (GiggilMessage, Hash?) -> Void) {
+    func add(_ listener: @escaping (GiggilMessage) -> Void) {
         listenerQueue.async {
         
             let index = self.listeners.count
@@ -23,11 +23,11 @@ class MessageBuffer: NSObject {
         }
     }
 
-    func handle(message: GiggilMessage, peer: Hash?){
+    func handle(message: GiggilMessage){
         listenerQueue.async {
             for listener in self.listeners.values {
                 self.listenerQueue.async {
-                    listener(message, peer)
+                    listener(message)
                 }
             }
         }

@@ -30,7 +30,7 @@ class NearbyUsersVC: UITableViewController {
 
     }
     
-    func reload(message: GiggilMessage, peer: Hash?) {
+    func reload(message: GiggilMessage) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

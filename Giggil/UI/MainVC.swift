@@ -44,7 +44,7 @@ class MainVC: SwitchVC {
         
     }
 
-    private func reloadListener(message: GiggilMessage, peer: Hash?) {
+    private func reloadListener(message: GiggilMessage) {
         if message.tid  == TEXT_MESSAGE
         || message.tid == PROFILE_NAME_MESSAGE
         || message.tid == REVOKE_MESSAGE {

@@ -33,7 +33,7 @@ class LocalChat: MessageBuffer {
         queue.async {
             self.insert(signed)
             //Might be source of concurrency issues
-            self.handle(message: signed, peer: myID)
+            self.handle(message: signed)
         }
         
         appDelegate.localNetwork?.sendAll(message: signed)
@@ -72,10 +72,10 @@ class LocalChat: MessageBuffer {
         }
     }
     
-    func localListen(message: GiggilMessage, peer: Hash?) {
+    func localListen(message: GiggilMessage) {
         if message.tid == TEXT_MESSAGE {
             insert(message)
-            handle(message: message, peer: peer)
+            handle(message: message)
         }
     }
 }

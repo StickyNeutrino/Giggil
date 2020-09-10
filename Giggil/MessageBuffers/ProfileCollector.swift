@@ -39,13 +39,13 @@ class ProfileCollector: MessageBuffer {
         queue.async {
             let profile = GiggilProfile(seed: message)!
             
-            func blockableListener(message:GiggilMessage, peer: Hash?) {
+            func blockableListener(message:GiggilMessage) {
                 self.queue.async {
                     if self.blocked[ profile.session.id ] ?? false {
                         return
                     }
                     
-                    self.handle(message: message, peer: peer)
+                    self.handle(message: message)
                 }
             }
             
@@ -91,7 +91,7 @@ class ProfileCollector: MessageBuffer {
         return sender(senderId: IDString, displayName: profile.name)
     }
     
-    private func localListen(message: GiggilMessage, peer: Hash?) {
+    private func localListen(message: GiggilMessage) {
         
         queue.async {
             switch message.tid {

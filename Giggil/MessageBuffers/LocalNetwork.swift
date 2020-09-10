@@ -136,7 +136,7 @@ extension LocalNetwork: MCNearbyServiceBrowserDelegate{
                 return
             }
             
-            self.handle(message: sessionMessage, peer: sessionMessage.id)
+            self.handle(message: sessionMessage)
             
             let session = MCSession(peer: self.myself, securityIdentity: nil, encryptionPreference: .optional)
             
@@ -294,7 +294,7 @@ extension LocalNetwork: MCSessionDelegate {
             
             print("GOT", message.id)
             
-            self.handle(message: message, peer: self.locals[peerID]?.id)
+            self.handle(message: message)
         }
     }
     

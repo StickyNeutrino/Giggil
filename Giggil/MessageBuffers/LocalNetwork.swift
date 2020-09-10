@@ -38,13 +38,13 @@ class LocalNetwork: MessageBuffer {
         
         myself = MCPeerID(displayName: me.name)
         
-        id = me.session.id
+        id = me.id
         
         guard let kx =
             GiggilMessage(
                 claims: [
                     .key: .data(Data(self.keys.publicKey)),
-                    .object: .data(Data(me.session.id))
+                    .object: .data(Data(me.id))
                 ]
             ).sign(keys)
             else { return nil }

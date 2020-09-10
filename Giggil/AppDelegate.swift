@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         profileCollector = ProfileCollector(net: localNetwork!)
         
-        messageSync = MessageSync(myID: activeSession.profile.session.id)
+        messageSync = MessageSync(myID: activeSession.profile.id)
         
         profileCollector!
             .add(localChat.localListen)
@@ -77,7 +77,7 @@ extension AppDelegate {
 extension AppDelegate: MessagesDataSource {
     func currentSender() -> SenderType {
         Sender(
-            id: htos(activeSession.profile.session.id),
+            id: htos(activeSession.profile.id),
             displayName: activeSession.profile.name)
     }
     
@@ -103,7 +103,7 @@ extension AppDelegate: MessagesDataSource {
         if case let .data(data) = message.claims[.object] {
             let hash = Bytes(data)
             
-            if hash == activeSession.profile.session.id {
+            if hash == activeSession.profile.id {
                 sender = currentSender()
             } else {
                 sender = profileCollector!.idToSender(hash)

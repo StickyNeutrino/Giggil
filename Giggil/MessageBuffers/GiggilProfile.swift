@@ -82,4 +82,10 @@ extension GiggilProfile {
             return names.max() ?? "Unknown User"
         }
     }
+    
+    var id: Hash {
+        queue.sync {
+            session.id
+        }
+    }
 }

@@ -41,7 +41,7 @@ class ProfileCollector: MessageBuffer {
             
             func blockableListener(message:GiggilMessage) {
                 self.queue.async {
-                    if self.blocked[ profile.session.id ] ?? false {
+                    if self.blocked[ profile.id ] ?? false {
                         return
                     }
                     
@@ -123,12 +123,12 @@ extension ProfileCollector: UITableViewDataSource {
             cell.loadProfile(profile)
             
             cell.blockCallback = {
-                self.blocked[profile.session.id] = true
+                self.blocked[profile.id] = true
                 
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     else { return }
                 
-                appDelegate.localChat.purge(userID: profile.session.id)
+                appDelegate.localChat.purge(userID: profile.id)
                 
                 appDelegate.reloadChat?()
             }

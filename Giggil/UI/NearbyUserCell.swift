@@ -78,7 +78,7 @@ class NearbyUserCell: UITableViewCell {
         
         var newline = -1
         
-        self.idLabel.text = profile.session.id.reduce(String(), { (string, int) -> String in
+        self.idLabel.text = profile.id.reduce(String(), { (string, int) -> String in
             newline += 1
             if newline % 8 == 0 && newline != 0 {
                 return string + "\n" + String(int)

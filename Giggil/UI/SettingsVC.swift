@@ -43,7 +43,7 @@ class SettingsVC : UIViewController {
             
             let keys = appDelegate.activeSession.keys
             
-            let profileID = appDelegate.activeSession.profile.session.id
+            let profileID = appDelegate.activeSession.profile.id
 
             guard let nameMsg = GiggilMessage(
                 claims: [

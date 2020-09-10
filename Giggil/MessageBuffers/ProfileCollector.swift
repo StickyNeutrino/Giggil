@@ -77,18 +77,12 @@ class ProfileCollector: MessageBuffer {
     }
     
     func idToSender(_ id: Hash) -> SenderType {
-        struct sender: SenderType {
-            var senderId: String = ""
-            
-            var displayName: String = "Unknown User"
-        }
-        
         let IDString = htos(id)
         
         guard let profile = profiles[id]
-            else { return sender() }
+            else { return Sender(senderId: IDString, displayName: "Unknown Sender") }
         
-        return sender(senderId: IDString, displayName: profile.name)
+        return Sender(senderId: IDString, displayName: profile.name)
     }
     
     private func localListen(message: GiggilMessage) {

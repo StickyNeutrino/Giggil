@@ -20,15 +20,14 @@ class LocalChat: MessageBuffer, MessageListener {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
         
-        let myID = appDelegate.activeSession.profile.id
-
+        let session = appDelegate.activeSession
         let unsigned = GiggilMessage(claims: [
-            .object: .data(Data(myID)),
+            .object: .data(Data(session.profile.id)),
             .text: .text(text),
             .sent: .date(Date())
         ])
         
-        let signed = appDelegate.sign(unsigned)
+        let signed = unsigned.sign(session.keys)!
         
         queue.async {
             self.insert(signed)

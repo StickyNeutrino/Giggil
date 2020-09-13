@@ -55,23 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window!.rootViewController = vc
         self.window!.makeKeyAndVisible()
-    
         
         return true
     }
 }
-
-extension AppDelegate {
-    func sign(_ message: GiggilMessage) -> GiggilMessage {
-        let keys = activeSession.keys
-        
-        guard let signed = message.sign(keys)
-            else { fatalError("failed to sign") }
-        
-        return signed
-    }
-}
-
 extension AppDelegate: MessagesDataSource {
     func currentSender() -> SenderType {
         Sender(

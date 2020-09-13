@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var localNetwork: LocalNetwork?
     
-    var localChat = LocalChat()
+    let localChat = LocalChat()
     
     let activeSession = getSession()
     
-    var profileCollector = ProfileCollector()
+    let profileCollector = ProfileCollector()
     
     var messageSync: MessageSync?
     

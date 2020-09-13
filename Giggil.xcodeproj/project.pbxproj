@@ -15,6 +15,7 @@
 		760A360E239C79AB0057FA0C /* MessageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A360D239C79AB0057FA0C /* MessageUtility.swift */; };
 		760A3610239C7FAB0057FA0C /* ProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A360F239C7FAB0057FA0C /* ProfileCollector.swift */; };
 		760A3612239EB9550057FA0C /* MessageBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A3611239EB9550057FA0C /* MessageBuffer.swift */; };
+		761012F9250ECB500051B5AE /* MessageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761012F8250ECB500051B5AE /* MessageFilter.swift */; };
 		761C92422368D2E100A05F7A /* LocalNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C92412368D2E100A05F7A /* LocalNetwork.swift */; };
 		762723BE2358E59D00995466 /* GiggilClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762723BD2358E59D00995466 /* GiggilClaims.swift */; };
 		76562A3A23B2E477009062F0 /* QuickLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76562A3923B2E477009062F0 /* QuickLayout.swift */; };
@@ -60,6 +61,7 @@
 		760A360D239C79AB0057FA0C /* MessageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtility.swift; sourceTree = "<group>"; };
 		760A360F239C7FAB0057FA0C /* ProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollector.swift; sourceTree = "<group>"; };
 		760A3611239EB9550057FA0C /* MessageBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBuffer.swift; sourceTree = "<group>"; };
+		761012F8250ECB500051B5AE /* MessageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFilter.swift; sourceTree = "<group>"; };
 		761C92412368D2E100A05F7A /* LocalNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetwork.swift; sourceTree = "<group>"; };
 		762723BD2358E59D00995466 /* GiggilClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilClaims.swift; sourceTree = "<group>"; };
 		76562A3923B2E477009062F0 /* QuickLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLayout.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				760A360B239C75A20057FA0C /* LocalChat.swift */,
 				7679B68023612FA900C87D17 /* GiggilProfile.swift */,
 				7606675023BC2BC100F697EC /* MessageSync.swift */,
+				761012F8250ECB500051B5AE /* MessageFilter.swift */,
 			);
 			path = MessageBuffers;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				761012F9250ECB500051B5AE /* MessageFilter.swift in Sources */,
 				76D259772343ED7700D71169 /* MainVC.swift in Sources */,
 				761C92422368D2E100A05F7A /* LocalNetwork.swift in Sources */,
 				76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */,

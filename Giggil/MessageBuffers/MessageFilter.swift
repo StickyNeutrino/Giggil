@@ -15,17 +15,18 @@ func Signed (_ message: GiggilMessage?) -> GiggilMessage? {
     if message?.signature != nil {
         return message
     }
+    return nil
 }
 
 func SessionType (_ message: GiggilMessage?) -> GiggilMessage? {
     if message?.tid == SESSION_MESSAGE {
         return message
     }
+    return nil
 }
 
 func ValidSession (_ message: GiggilMessage?) -> GiggilMessage? {
     return message
     |> SessionType
     |> Signed
-    |>
 }

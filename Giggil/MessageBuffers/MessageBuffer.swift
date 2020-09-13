@@ -39,16 +39,16 @@ precedencegroup ForwardPipe {
     higherThan: LogicalConjunctionPrecedence
 }
 
-infix operator |> : ForwardPipe
+infix operator ||> : ForwardPipe
 extension MessageBuffer {
-    static func |> (lhs: MessageBuffer, rhs: MessageListener & MessageBuffer) -> MessageBuffer {
+    static func ||> (lhs: MessageBuffer, rhs: MessageListener & MessageBuffer) -> MessageBuffer {
 
         lhs.add(rhs.listener)
         
         return rhs
     }
     
-    static func |> (lhs: MessageBuffer, rhs: MessageListener) {
+    static func ||> (lhs: MessageBuffer, rhs: MessageListener) {
         lhs.add(rhs.listener)
     }
 }

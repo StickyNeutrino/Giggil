@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         messageSync = MessageSync(myID: activeSession.profile.id)
         
         localNetwork!
-            |> profileCollector
-            |> localChat
-            |> messageSync!
+            ||> profileCollector
+            ||> localChat
+            ||> messageSync!
 
 
         self.window = UIWindow(frame: UIScreen.main.bounds)

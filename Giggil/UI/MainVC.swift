@@ -25,7 +25,7 @@ class MainVC: SwitchVC {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
         
-        appDelegate.profileCollector?.add(reloadListener)
+        appDelegate.profileCollector.add(reloadListener)
         
         (rightVC as! GiggilChatVC) //Fixme
             .messageInputBarDelegate = appDelegate.localChat

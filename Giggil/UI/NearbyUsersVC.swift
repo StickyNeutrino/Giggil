@@ -25,7 +25,7 @@ class NearbyUsersVC: UITableViewController {
         
         tableView.dataSource = appDelegate.profileCollector
         
-        appDelegate.profileCollector?.add(reload)
+        appDelegate.profileCollector.add(reload)
         
 
     }

@@ -17,18 +17,8 @@ class ProfileCollector: MessageBuffer {
     
     var blocked = [Hash:Bool]()
     
-    let queue: DispatchQueue
+    let queue = DispatchQueue(label: "Giggil.Sessions.queue")
     
-    init(net: LocalNetwork){
-        let queueLabel = "Giggil.Sessions.queue"
-        
-        queue = DispatchQueue(label: queueLabel)
-        
-        super.init()
-        
-        net.add(localListen)
-    }
-
     func blockProfile(ID: Hash) {
         queue.async {
             self.blocked[ID] = true
@@ -85,7 +75,7 @@ class ProfileCollector: MessageBuffer {
         return Sender(senderId: IDString, displayName: profile.name)
     }
     
-    private func localListen(message: GiggilMessage) {
+    func localListen(message: GiggilMessage) {
         
         queue.async {
             switch message.tid {

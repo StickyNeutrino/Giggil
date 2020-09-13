@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let activeSession = getSession()
     
-    var profileCollector: ProfileCollector?
+    var profileCollector = ProfileCollector()
     
     var messageSync: MessageSync?
     
@@ -39,11 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Could just take a active session
         localNetwork = LocalNetwork(me: activeSession.profile, keys: activeSession.keys)
         
-        profileCollector = ProfileCollector(net: localNetwork!)
+        localNetwork?.add(profileCollector.localListen)
         
         messageSync = MessageSync(myID: activeSession.profile.id)
         
-        profileCollector!
+        profileCollector
             .add(localChat.localListen)
         localChat
             .add(messageSync!.listener)
@@ -106,7 +106,7 @@ extension AppDelegate: MessagesDataSource {
             if hash == activeSession.profile.id {
                 sender = currentSender()
             } else {
-                sender = profileCollector!.idToSender(hash)
+                sender = profileCollector.idToSender(hash)
             }
         } else { fatalError() }
         

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Sodium
 
-class MessageSync {
+class MessageSync : MessageListener {
     
     var messages = [GiggilMessage]()
     
@@ -25,7 +25,7 @@ class MessageSync {
         }
     }
     
-    func listener(message: GiggilMessage) {
+    func listener(_ message: GiggilMessage) {
         if message.tid != TEXT_MESSAGE {
             return
         }

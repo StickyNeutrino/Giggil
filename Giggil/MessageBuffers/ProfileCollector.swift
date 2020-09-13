@@ -10,8 +10,8 @@ import Foundation
 import MessageKit
 import Sodium
 
-class ProfileCollector: MessageBuffer {
-
+class ProfileCollector: MessageBuffer, MessageListener {
+    
     var profiles = [Hash:GiggilProfile]()
     var order = [Hash]()
     
@@ -52,7 +52,7 @@ class ProfileCollector: MessageBuffer {
             guard case let .data(ID) = message.claims[.object]
                 else { return }
             
-            self.profiles[Bytes(ID)]?.listener(message: message, hash: nil)
+            self.profiles[Bytes(ID)]?.listener(message)
         }
     }
     
@@ -75,7 +75,7 @@ class ProfileCollector: MessageBuffer {
         return Sender(senderId: IDString, displayName: profile.name)
     }
     
-    func localListen(message: GiggilMessage) {
+    func listener(_ message: GiggilMessage) {
         
         queue.async {
             switch message.tid {

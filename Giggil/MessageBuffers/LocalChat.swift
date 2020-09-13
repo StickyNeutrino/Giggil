@@ -10,7 +10,7 @@ import Foundation
 import MessageKit
 import InputBarAccessoryView
 
-class LocalChat: MessageBuffer {
+class LocalChat: MessageBuffer, MessageListener {
 
     var messages = [GiggilMessage]()
     
@@ -72,7 +72,7 @@ class LocalChat: MessageBuffer {
         }
     }
     
-    func localListen(message: GiggilMessage) {
+    func listener(_ message: GiggilMessage) {
         if message.tid == TEXT_MESSAGE {
             insert(message)
             handle(message: message)

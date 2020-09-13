@@ -39,14 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Could just take a active session
         localNetwork = LocalNetwork(me: activeSession.profile, keys: activeSession.keys)
         
-        localNetwork?.add(profileCollector.localListen)
-        
         messageSync = MessageSync(myID: activeSession.profile.id)
         
-        profileCollector
-            .add(localChat.localListen)
-        localChat
-            .add(messageSync!.listener)
+        localNetwork!
+            |> profileCollector
+            |> localChat
+            |> messageSync!
 
 
         self.window = UIWindow(frame: UIScreen.main.bounds)

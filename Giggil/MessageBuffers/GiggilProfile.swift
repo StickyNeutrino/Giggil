@@ -36,7 +36,7 @@ class GiggilProfile: MessageBuffer {
         }
     }
     
-    func listener(message: GiggilMessage, hash: Hash?) {
+    func listener(_ message: GiggilMessage) {
         queue.async {
             if self.session.verify(message) {
                 self.handle(message: message)

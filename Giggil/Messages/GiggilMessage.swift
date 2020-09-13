@@ -16,7 +16,6 @@ typealias Signature = Bytes
 
 class GiggilMessage {
     
-    let header: String?
     let claims: [claimKeys: claimValue]
     let signature: Signature?
     
@@ -39,8 +38,6 @@ class GiggilMessage {
             else { return nil }
         
         claims = claim
-        
-        header = nil
     }
     
     init(claims: [claimKeys: claimValue]) {
@@ -50,7 +47,6 @@ class GiggilMessage {
         
         original =  "HEAD." + body + "."
         
-        header = nil
         signature = nil
         
         self.claims = claims

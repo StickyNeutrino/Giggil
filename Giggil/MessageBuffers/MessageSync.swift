@@ -20,8 +20,8 @@ class MessageSync : MessageListener {
         
         listenID = myID
         
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (_) in
-            self.prune()
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] (_) in
+            self?.prune()
         }
     }
     

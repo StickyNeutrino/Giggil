@@ -32,6 +32,10 @@
 		76D259772343ED7700D71169 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D259762343ED7700D71169 /* MainVC.swift */; };
 		76D2597F2343ED7B00D71169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D2597E2343ED7B00D71169 /* Assets.xcassets */; };
 		76D259822343ED7B00D71169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D259802343ED7B00D71169 /* LaunchScreen.storyboard */; };
+		76E192D02511D03C0005A223 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E192CF2511D03C0005A223 /* TextMessage.swift */; };
+		76E192D22511D04E0005A223 /* RevokeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E192D12511D04E0005A223 /* RevokeMessage.swift */; };
+		76E192D42511D05D0005A223 /* ProfileNameMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E192D32511D05D0005A223 /* ProfileNameMessage.swift */; };
+		76E192D62511D0700005A223 /* KeyExchangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E192D52511D0700005A223 /* KeyExchangeMessage.swift */; };
 		76EAD98D24EB55FE001435D5 /* GiggilMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */; };
 		76EB6F1E23440C8C00FAD95D /* GiggilMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */; };
 		76EB6F2C23457F3D00FAD95D /* GiggilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB6F2B23457F3D00FAD95D /* GiggilTests.swift */; };
@@ -81,6 +85,10 @@
 		76D2597E2343ED7B00D71169 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76D259812343ED7B00D71169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76D259832343ED7B00D71169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76E192CF2511D03C0005A223 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
+		76E192D12511D04E0005A223 /* RevokeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevokeMessage.swift; sourceTree = "<group>"; };
+		76E192D32511D05D0005A223 /* ProfileNameMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameMessage.swift; sourceTree = "<group>"; };
+		76E192D52511D0700005A223 /* KeyExchangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchangeMessage.swift; sourceTree = "<group>"; };
 		76EAD98C24EB55FE001435D5 /* GiggilMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiggilMessageTests.swift; sourceTree = "<group>"; };
 		76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiggilMessage.swift; sourceTree = "<group>"; };
 		76EB6F2923457F3D00FAD95D /* GiggilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiggilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +127,11 @@
 				76EB6F1D23440C8C00FAD95D /* GiggilMessage.swift */,
 				760A360D239C79AB0057FA0C /* MessageUtility.swift */,
 				762723BD2358E59D00995466 /* GiggilClaims.swift */,
+				76E192D52511D0700005A223 /* KeyExchangeMessage.swift */,
+				76E192D32511D05D0005A223 /* ProfileNameMessage.swift */,
 				7692955924FD958A007DC0D9 /* SessionMessage.swift */,
+				76E192CF2511D03C0005A223 /* TextMessage.swift */,
+				76E192D12511D04E0005A223 /* RevokeMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -444,18 +456,22 @@
 				760A3612239EB9550057FA0C /* MessageBuffer.swift in Sources */,
 				76562A3A23B2E477009062F0 /* QuickLayout.swift in Sources */,
 				76D259732343ED7700D71169 /* AppDelegate.swift in Sources */,
+				76E192D42511D05D0005A223 /* ProfileNameMessage.swift in Sources */,
 				7692955A24FD958A007DC0D9 /* SessionMessage.swift in Sources */,
 				7688DB8F2377C6FD00BDED94 /* SwitchView.swift in Sources */,
 				7679B68123612FA900C87D17 /* GiggilProfile.swift in Sources */,
 				7688DB8D2377C6A300BDED94 /* SwitchVC.swift in Sources */,
+				76E192D62511D0700005A223 /* KeyExchangeMessage.swift in Sources */,
 				7606675123BC2BC100F697EC /* MessageSync.swift in Sources */,
 				76AA5F8F2373E62A002670BD /* GiggilChatVC.swift in Sources */,
+				76E192D02511D03C0005A223 /* TextMessage.swift in Sources */,
 				760A3610239C7FAB0057FA0C /* ProfileCollector.swift in Sources */,
 				7669B14A2366067C001A49E4 /* base.swift in Sources */,
 				7606674D23BA731500F697EC /* NearbyUserCell.swift in Sources */,
 				762723BE2358E59D00995466 /* GiggilClaims.swift in Sources */,
 				760A360C239C75A20057FA0C /* LocalChat.swift in Sources */,
 				76C3290323B6DA0D0030745F /* SettingsVC.swift in Sources */,
+				76E192D22511D04E0005A223 /* RevokeMessage.swift in Sources */,
 				7606674B23BA724B00F697EC /* NearbyUsersVC.swift in Sources */,
 				7606675323BD78B600F697EC /* ActiveSession.swift in Sources */,
 				76C3290523B6DA960030745F /* SettingsView.swift in Sources */,

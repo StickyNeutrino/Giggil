@@ -13,6 +13,8 @@ enum claimKeys: String {
     case object
     case text
     case sent
+    case sender
+    case next
     case name
     case rand
     case prev
@@ -22,7 +24,7 @@ enum claimKeys: String {
 
 fileprivate func A (key: claimKeys, value: Any) -> claimValue {
     switch key {
-    case .object, .rand, .prev, .key:
+    case .object, .rand, .prev, .key, .sender, .next:
         guard let v = value as? String
             else { return .none }
         
@@ -150,7 +152,7 @@ func decodeClaims(_ body: String) -> [claimKeys: claimValue]? {
 }
 
 let TEXT_CLAIMS: [claimKeys] = [
-    .object,
+    .sender,
     .text,
     .sent,
 ]

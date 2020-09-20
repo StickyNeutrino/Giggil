@@ -20,7 +20,7 @@ class TextMessage : GiggilMessage {
     
     init(sender: Hash, text: String) {
         let claims: [claimKeys : claimValue] = [
-                  .object: .data(Data(sender)),
+                  .sender: .data(Data(sender)),
                   .text: .text(text),
                   .sent: .date(Date())
               ]
@@ -32,7 +32,7 @@ class TextMessage : GiggilMessage {
 extension TextMessage {
     
     var sender: Hash {
-        guard case let .data(object) = claims[.object]
+        guard case let .data(object) = claims[.sender]
             else { fatalError() }
     
         return Bytes(object)

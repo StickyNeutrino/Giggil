@@ -56,6 +56,17 @@ class ProfileCollector: MessageBuffer, MessageListener {
         }
     }
     
+    func validateAndHandle(_ message: GiggilMessage) {
+        queue.async {
+            guard case let .data(sender) = message.claims[.sender]
+                else { return }
+            
+            if self.profiles[Hash(sender)]?.session.verify(message) ?? false {
+                self.handle(message: message)
+            }
+        }
+    }
+    
     func moveToTop(_ id: Hash){
         queue.async {
             self.order.removeAll { (profileID) -> Bool in
@@ -83,8 +94,12 @@ class ProfileCollector: MessageBuffer, MessageListener {
                 
                 self.newProfile(message)
                 
-            default:
+            case PROFILE_NAME_MESSAGE,
+                 REVOKE_MESSAGE:
                 self.updateProfile(message)
+                
+            default:
+                self.validateAndHandle(message)
             }
             
             guard case let .data(ID) = message.claims[.object]

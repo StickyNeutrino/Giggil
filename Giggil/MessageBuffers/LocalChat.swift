@@ -8,40 +8,33 @@
 
 import Foundation
 import MessageKit
-import InputBarAccessoryView
 
 class LocalChat: MessageBuffer, MessageListener {
 
     var messages = [GiggilMessage]()
     
-    let queue = DispatchQueue(label: "Giggil.Local.queue")
+    let senderID : Hash
     
-    func send(_ text: String){
-        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            else { return }
+    let profileCollector = ProfileCollector()
+    
+    init(sender: Hash){
+        senderID = sender
         
-        let session = appDelegate.activeSession
-        let unsigned = GiggilMessage(claims: [
-            .object: .data(Data(session.profile.id)),
-            .text: .text(text),
-            .sent: .date(Date())
-        ])
+        super.init()
         
-        let signed = unsigned.sign(session.keys)!
+        _ = self ||> profileCollector
         
-        queue.async {
-            self.insert(signed)
-            //Might be source of concurrency issues
-            self.handle(message: signed)
-        }
-        
-        appDelegate.localNetwork?.sendAll(message: signed)
+        profileCollector.add(insert(_:))
     }
     
+    let queue = DispatchQueue(label: "Giggil.Local.queue")
 
-    
     func insert(_ message: GiggilMessage) {
         queue.async {
+            
+            if message.tid != TEXT_MESSAGE {
+                return
+            }
             
             if self.messages.contains(message){
                 return
@@ -72,15 +65,106 @@ class LocalChat: MessageBuffer, MessageListener {
     }
     
     func listener(_ message: GiggilMessage) {
-        if message.tid == TEXT_MESSAGE {
-            insert(message)
-            handle(message: message)
-        }
+        handle(message: message)
     }
 }
 
-extension LocalChat: MessageInputBarDelegate {
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        send(text)
+extension LocalChat: MessagesDataSource {
+    func currentSender() -> SenderType {
+        Sender(
+            id: htos(senderID),
+            displayName: profileCollector.profiles[senderID]!.name
+        )
+    }
+    
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        queue.sync {
+            return toMessageKit(messages[indexPath.section])
+        }
+    }
+    
+    func toMessageKit(_ message: GiggilMessage) -> MessageType {
+        struct messageStruct: MessageType {
+            let sender: SenderType
+            
+            let messageId: String
+            
+            let sentDate: Date
+            
+            let kind: MessageKind
+        }
+        
+        let sender: SenderType
+        
+        if case let .data(data) = message.claims[.sender] {
+            let hash = Hash(data)
+            
+            if hash == senderID {
+                sender = currentSender()
+            } else {
+                sender = profileCollector.idToSender(hash)
+            }
+        } else { fatalError() }
+        
+        guard case let .date(sentDate) =  message.claims[.sent]
+            else { fatalError() }
+        
+        guard case let .text(text) = message.claims[.text]
+            else { fatalError() }
+        
+        return messageStruct(
+            sender: sender,
+            messageId: htos(message.id),
+            sentDate: sentDate,
+            kind: .text(text))
+    }
+
+    
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        queue.sync {
+            messages.count
+        }
+    }
+    
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+
+        let name = message.sender.displayName
+    
+        return NSAttributedString(
+            string: name,
+            attributes: [
+                .font: UIFont.preferredFont(forTextStyle: .caption1),
+                .foregroundColor: UIColor.gray,
+        ])
+    }
+}
+
+extension LocalChat: MessagesLayoutDelegate {
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if !isNamed(indexPath.section) {
+                return 0
+            }
+
+            return self.isFromCurrentSender(message: message) ? 0 : 12
+    }
+}
+
+extension LocalChat {
+    //Only first message in a block get a user name
+    func isNamed(_ index: Int) -> Bool {
+        
+        if index == 0 { return true }
+        
+        guard case let .data(prev) = messages[index - 1].claims[.sender]
+            else { fatalError() }
+        
+        guard case let .data(target) = messages[index].claims[.sender]
+            else { fatalError() }
+        
+        if prev == target {
+            return false
+        }
+        
+        return true
     }
 }

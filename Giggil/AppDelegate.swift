@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Sodium
 import MessageKit
+import InputBarAccessoryView
 
 let sodium = Sodium()
 
@@ -20,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var localNetwork: LocalNetwork?
     
-    let localChat = LocalChat()
+    lazy var localChat = {
+        LocalChat(sender: activeSession.profile.id)
+    }()
     
     let activeSession = getSession()
     
@@ -46,6 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ||> localChat
             ||> messageSync!
 
+        localChat.listener(activeSession.profile.session)
+        
+        for message in activeSession.profile.members() {
+            localChat.listener(message)
+        }
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -59,102 +67,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-extension AppDelegate: MessagesDataSource {
-    func currentSender() -> SenderType {
-        Sender(
-            id: htos(activeSession.profile.id),
-            displayName: activeSession.profile.name)
-    }
-    
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        localChat.queue.sync {
-            return toMessageKit(localChat.messages[indexPath.section])
-        }
-    }
-    
-    func toMessageKit(_ message: GiggilMessage) -> MessageType {
-        struct messageStruct: MessageType {
-            let sender: SenderType
-            
-            let messageId: String
-            
-            let sentDate: Date
-            
-            let kind: MessageKind
-        }
-        
-        let sender: SenderType
-        
-        if case let .data(data) = message.claims[.object] {
-            let hash = Bytes(data)
-            
-            if hash == activeSession.profile.id {
-                sender = currentSender()
-            } else {
-                sender = profileCollector.idToSender(hash)
-            }
-        } else { fatalError() }
-        
-        guard case let .date(sentDate) =  message.claims[.sent]
-            else { fatalError() }
-        
-        guard case let .text(text) = message.claims[.text]
-            else { fatalError() }
-        
-        return messageStruct(
-            sender: sender,
-            messageId: htos(message.id),
-            sentDate: sentDate,
-            kind: .text(text))
-    }
 
+extension AppDelegate: MessageInputBarDelegate {
     
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        localChat.queue.sync {
-            localChat.messages.count
-        }
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        send(text)
+        reloadChat?()
     }
     
-    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-
-        let name = message.sender.displayName
-    
-        return NSAttributedString(
-            string: name,
-            attributes: [
-                .font: UIFont.preferredFont(forTextStyle: .caption1),
-                .foregroundColor: UIColor.gray,
-        ])
+    func send(_ text: String){
+        let unsigned = TextMessage(sender: activeSession.profile.id, text: text)
+        
+        let signed = unsigned.sign(activeSession.keys)!
+        
+        localChat.listener(signed)
+        
+        localNetwork?.sendAll(message: signed)
     }
 }
-
-extension AppDelegate: MessagesLayoutDelegate {
-    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        if !localChat.isNamed(indexPath.section) {
-                return 0
-            }
-
-            return self.isFromCurrentSender(message: message) ? 0 : 12
-    }
-}
-
-extension LocalChat {
-    //Only first message in a block get a user name
-    func isNamed(_ index: Int) -> Bool {
-        
-        if index == 0 { return true }
-        
-        guard case let .data(prev) = messages[index - 1].claims[.object]
-            else { fatalError() }
-        
-        guard case let .data(target) = messages[index].claims[.object]
-            else { fatalError() }
-        
-        if prev == target {
-            return false
-        }
-        
-        return true
-    }
-}
-

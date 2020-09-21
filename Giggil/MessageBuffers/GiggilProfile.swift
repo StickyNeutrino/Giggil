@@ -27,7 +27,10 @@ class GiggilProfile: MessageBuffer {
             return nil
         }
         
-        self.session = SessionMessage(orig: seed.original)!
+        guard let session = SessionMessage(orig: seed.original)
+            else { return nil }
+        
+        self.session = session
     }
     
     func members() -> [GiggilMessage] {

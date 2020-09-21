@@ -9,9 +9,11 @@
 import Foundation
 @testable import Giggil
 
+let testKey = sodium.sign.keyPair()!
+
 let testSession = GiggilMessage(
     claims: [
-        .key : .data(Data(sodium.sign.keyPair()!.publicKey))
+        .key : .data(Data(testKey.publicKey))
     ])
 
 let testText = GiggilMessage(
@@ -40,4 +42,8 @@ let testKeyExchange = GiggilMessage(
     .object : .data(Data(testSession.id))
 ])
 
-let allMessages = [testSession, testText, testRevoke, testProfileName, testKeyExchange]
+let allUnsigned = [testSession, testText, testRevoke, testProfileName, testKeyExchange]
+
+let allSigned = allUnsigned.map({$0.sign(testKey)!})
+
+let allMessages = allUnsigned + allSigned

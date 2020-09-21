@@ -42,6 +42,8 @@ class ProfileCollector: MessageBuffer, MessageListener {
             profile.add(blockableListener)
             
             self.profiles[message.id] = profile
+            
+            self.handle(message: message)
         
         }
     }

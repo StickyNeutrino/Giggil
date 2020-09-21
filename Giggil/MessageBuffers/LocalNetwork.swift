@@ -67,10 +67,11 @@ class LocalNetwork: MessageBuffer {
         super.init()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [unowned self] notification in
-            
-            self.peerIDs = [:]
-            _ = self.locals.values.map { (p) in p.session.disconnect() }
-            self.locals = [:]
+            self.queue.async {
+                self.peerIDs = [:]
+                _ = self.locals.values.map { (p) in p.session.disconnect() }
+                self.locals = [:]
+            }
         }
         
         advertiser.delegate = self

@@ -23,10 +23,6 @@ class GiggilProfile: MessageBuffer {
     }
     
     required init?(seed: GiggilMessage) {
-        if seed.tid != SESSION_MESSAGE {
-            return nil
-        }
-        
         guard let session = SessionMessage(orig: seed.original)
             else { return nil }
         

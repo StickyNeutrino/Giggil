@@ -46,12 +46,23 @@ extension GiggilTests {
         }
     }
     
-    func testVerifyReturnsTrueWithPropperKey() {
-
+    func testSign() {
+        let message = SessionMessage(keys: testKey).sign(testKey)
+        
+        XCTAssert( message != nil )
+        XCTAssert( message?.signature != nil)
     }
     
-    func testVerifyReturnsFalseWithImpropperKey() {
-
+    func testVerify() {
+        for message in allSigned {
+            XCTAssert(message.verify(testKey.publicKey) == true)
+        }
+        
+        let otherKeys = randomKey()
+        
+        for message in allSigned {
+            XCTAssert(message.verify(otherKeys.publicKey) == false)
+        }
     }
     
     

@@ -50,7 +50,6 @@ extension GiggilTests {
         let message = SessionMessage(keys: testKey).sign(testKey)
         
         XCTAssert( message != nil )
-        XCTAssert( message?.signature != nil)
     }
     
     func testVerify() {

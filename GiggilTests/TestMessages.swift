@@ -18,7 +18,7 @@ let testSession = GiggilMessage(
 
 let testText = GiggilMessage(
     claims: [
-        .object : .data(Data(testSession.id)),
+        .sender : .data(Data(testSession.id)),
         .text   : .text("who"),
         .sent   : .date(Date())
     ])

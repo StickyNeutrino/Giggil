@@ -11,8 +11,8 @@ import Sodium
 
 let INVITE_CLAIMS: [claimKeys] = [
     .object,
-    .text,
-    .sent,
+    .sender,
+    .next,
 ]
 
 let INVITE_MESSAGE = tidCalc(claims: TEXT_CLAIMS)!

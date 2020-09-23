@@ -85,13 +85,13 @@ class ProfileCollector: MessageBuffer, MessageListener {
         }
         
         queue.async {
-            switch message.tid {
-            case SESSION_MESSAGE:
+            switch message {
+            case is SessionMessage:
                 
                 newProfile(message)
                 
-            case PROFILE_NAME_MESSAGE,
-                 REVOKE_MESSAGE:
+            case is ProfileNameMessage,
+                 is RevokeMessage:
                 self.updateProfile(message)
                 
             default:

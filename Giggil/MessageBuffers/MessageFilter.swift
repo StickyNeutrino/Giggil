@@ -11,6 +11,18 @@ import Foundation
 infix operator |> : ForwardPipe
 func |> <T, U>(value: T, function: (T)->(U)) -> U { function(value) }
 
+infix operator || : AdditionPrecedence
+func || <T, U>(
+    lhs: @escaping (T)->(U?),
+    rhs: @escaping (T)->(U?))
+    -> (T)->(U?) {
+        return {(T) in
+            lhs(T) ?? rhs(T) ?? nil
+        }
+        
+}
+
+
 func Signed (_ message: GiggilMessage?) -> GiggilMessage? {
     if message?.signature != nil {
         return message

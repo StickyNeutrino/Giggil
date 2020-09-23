@@ -10,7 +10,7 @@ import Foundation
 import Sodium
 
 class SessionMessage : GiggilMessage {
-    override init?(orig: String) {
+    required init?(orig: String) {
         super.init(orig: orig)
         
         if self.tid != SESSION_MESSAGE {

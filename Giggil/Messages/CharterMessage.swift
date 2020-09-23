@@ -17,7 +17,7 @@ let CHARTER_CLAIMS: [claimKeys] = [
 let CHARTER_MESSAGE = tidCalc(claims: CHARTER_CLAIMS)!
 
 class CharterMessage : GiggilMessage {
-    override init?(orig: String) {
+    required init?(orig: String) {
         super.init(orig: orig)
         
         if self.tid != CHARTER_MESSAGE {

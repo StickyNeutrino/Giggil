@@ -130,8 +130,7 @@ extension LocalNetwork: MCNearbyServiceBrowserDelegate{
             guard let sessionMessage = SessionMessage(orig: info?["session"] ?? "")
                 else { return }
             
-            guard let kxMessage = GiggilMessage(orig: info?["kx"] ?? "")
-                else { return }
+            let kxMessage = GiggilMessageTyped(info?["kx"] ?? "")
             
             if !validateKX(kx: kxMessage, session: sessionMessage) {
                 return
@@ -290,8 +289,7 @@ extension LocalNetwork: MCSessionDelegate {
             guard let jwt = plaintext?.utf8String
                 else { return }
             
-            guard let message = GiggilMessage(orig: jwt)
-                else { return }
+            let message = GiggilMessageTyped(jwt)
             
             print("GOT", message.id)
             

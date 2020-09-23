@@ -21,7 +21,7 @@ class GiggilMessage {
     
     let original: String
     
-    init?(orig: String) {
+    required init?(orig: String) {
         original = orig
         
         let sections = original.split(separator: ".")
@@ -62,8 +62,7 @@ class GiggilMessage {
         guard let signature = base64encode(data: Data(bytes))
             else { return nil }
         
-        guard let message = GiggilMessage(orig: "DEBUG." + body + "." + signature)
-            else { return nil }
+        let message = GiggilMessageTyped("DEBUG." + body + "." + signature)
 
         return message
     }

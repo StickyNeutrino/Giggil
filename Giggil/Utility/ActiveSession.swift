@@ -37,7 +37,7 @@ func loadSession() -> ActiveSession? {
     let profile = GiggilProfile(session)
     
     for message in messages.suffix(from: 1) {
-        profile.listener(GiggilMessage(orig: message)!)
+        profile.listener(GiggilMessageTyped(message))
     }
     
     return ActiveSession(profile: profile, keys: keys)

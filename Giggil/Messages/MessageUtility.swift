@@ -23,3 +23,17 @@ extension GiggilMessage {
         }
     }
 }
+
+func GiggilMessageTyped (_ orig: String) -> GiggilMessage {
+    let types = [
+        SessionMessage.self,
+        KeyExchangeMessage.self,
+        ProfileNameMessage.self,
+        TextMessage.self,
+        InviteMessage.self,
+        RevokeMessage.self,
+        CharterMessage.self
+    ]
+    
+    return types.reduce(nil, { prev, current in prev ?? current.init(orig: orig) })!
+}

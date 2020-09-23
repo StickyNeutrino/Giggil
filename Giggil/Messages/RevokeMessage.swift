@@ -10,7 +10,7 @@ import Foundation
 import Sodium
 
 class RevokeMessage : GiggilMessage {
-    override init?(orig: String) {
+    required init?(orig: String) {
         super.init(orig: orig)
         
         if self.tid != REVOKE_MESSAGE {

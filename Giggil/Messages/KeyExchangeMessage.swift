@@ -10,7 +10,7 @@ import Foundation
 import Sodium
 
 class KeyExchangeMessage : GiggilMessage {
-    override init?(orig: String) {
+    required init?(orig: String) {
         super.init(orig: orig)
         
         if self.tid != KEY_EXCHANGE_MESSAGE {

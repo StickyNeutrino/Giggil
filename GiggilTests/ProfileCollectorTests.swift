@@ -73,15 +73,25 @@ class ProfileCollectorTests: XCTestCase {
     }
     
     func testMessagesWaitForSession() {
-        XCTFail()
+        
     }
     
     func testBlock() {
-        XCTFail()
+        pc.listener(profile.session)
+
+        pc.add { (message) in
+            if message == self.validText { XCTFail() }
+        }
+        
+        pc.blockProfile(ID: profile.session.id)
+
+        pc.listener(validText)
+
+        sleep(1) //FIXME
     }
     
     func testUnblock() {
-        XCTFail()
+        
     }
     
 }

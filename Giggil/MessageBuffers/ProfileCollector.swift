@@ -12,16 +12,14 @@ import Sodium
 
 class ProfileCollector: MessageBuffer, MessageListener {
     
-    var profiles = [Hash:GiggilProfile]()
+    var profiles = [Hash:(profile: GiggilProfile, blocked: Bool)]()
     var order = [Hash]()
-    
-    var blocked = [Hash:Bool]()
     
     let queue = DispatchQueue(label: "Giggil.Sessions.queue")
     
     func blockProfile(ID: Hash) {
         queue.async {
-            self.blocked[ID] = true
+            self.profiles[ID]?.blocked = true
         }
     }
     
@@ -31,7 +29,7 @@ class ProfileCollector: MessageBuffer, MessageListener {
             guard case let .data(ID) = message.claims[.object]
                 else { return }
             
-            self.profiles[Bytes(ID)]?.listener(message)
+            self.profiles[Bytes(ID)]?.profile.listener(message)
         }
     }
     
@@ -48,7 +46,7 @@ class ProfileCollector: MessageBuffer, MessageListener {
     func idToSender(_ id: Hash) -> SenderType {
         let IDString = htos(id)
         
-        guard let profile = profiles[id]
+        guard let profile = profiles[id]?.profile
             else { return Sender(senderId: IDString, displayName: "Unknown Sender") }
         
         return Sender(senderId: IDString, displayName: profile.name)
@@ -61,7 +59,7 @@ class ProfileCollector: MessageBuffer, MessageListener {
             
             func blockableListener(message:GiggilMessage) {
                 self.queue.async {
-                    if self.blocked[ profile.id ] ?? false {
+                    if self.profiles[ profile.id ]?.blocked ?? false {
                         return
                     }
                     
@@ -71,7 +69,7 @@ class ProfileCollector: MessageBuffer, MessageListener {
             
             profile.add(blockableListener)
             
-            self.profiles[message.id] = profile
+            self.profiles[message.id]?.profile = profile
             
             self.handle(message: message)
         }
@@ -81,7 +79,7 @@ class ProfileCollector: MessageBuffer, MessageListener {
             guard case let .data(sender) = message.claims[.sender]
                 else { return }
             
-            if self.profiles[Hash(sender)]?.session.verify(message) ?? false {
+            if self.profiles[Hash(sender)]?.profile.session.verify(message) ?? false {
                 self.handle(message: message)
             }
         }
@@ -117,7 +115,7 @@ extension ProfileCollector: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         queue.sync {
-            guard let profile = profiles[order[indexPath.row]]
+            guard let profile = profiles[order[indexPath.row]]?.profile
                 else { fatalError() }
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NearbyUserCell.identifier) as? NearbyUserCell
@@ -126,7 +124,7 @@ extension ProfileCollector: UITableViewDataSource {
             cell.loadProfile(profile)
             
             cell.blockCallback = {
-                self.blocked[profile.id] = true
+                self.profiles[profile.id]?.blocked = true
                 
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     else { return }

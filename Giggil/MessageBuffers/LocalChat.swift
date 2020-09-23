@@ -73,7 +73,7 @@ extension LocalChat: MessagesDataSource {
     func currentSender() -> SenderType {
         Sender(
             id: htos(senderID),
-            displayName: profileCollector.profiles[senderID]!.name
+            displayName: profileCollector.profiles[senderID]!.profile.name
         )
     }
     

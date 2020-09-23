@@ -25,29 +25,6 @@ class ProfileCollector: MessageBuffer, MessageListener {
         }
     }
     
-    func newProfile(_ message: GiggilMessage) {
-        queue.async {
-            let profile = GiggilProfile(seed: message)!
-            
-            func blockableListener(message:GiggilMessage) {
-                self.queue.async {
-                    if self.blocked[ profile.id ] ?? false {
-                        return
-                    }
-                    
-                    self.handle(message: message)
-                }
-            }
-            
-            profile.add(blockableListener)
-            
-            self.profiles[message.id] = profile
-            
-            self.handle(message: message)
-        
-        }
-    }
-    
     func updateProfile(_ message: GiggilMessage) {
         queue.async {
             
@@ -55,17 +32,6 @@ class ProfileCollector: MessageBuffer, MessageListener {
                 else { return }
             
             self.profiles[Bytes(ID)]?.listener(message)
-        }
-    }
-    
-    func validateAndHandle(_ message: GiggilMessage) {
-        queue.async {
-            guard case let .data(sender) = message.claims[.sender]
-                else { return }
-            
-            if self.profiles[Hash(sender)]?.session.verify(message) ?? false {
-                self.handle(message: message)
-            }
         }
     }
     
@@ -90,18 +56,48 @@ class ProfileCollector: MessageBuffer, MessageListener {
     
     func listener(_ message: GiggilMessage) {
         
+        func newProfile(_ message: GiggilMessage) {
+            let profile = GiggilProfile(seed: message)!
+            
+            func blockableListener(message:GiggilMessage) {
+                self.queue.async {
+                    if self.blocked[ profile.id ] ?? false {
+                        return
+                    }
+                    
+                    self.handle(message: message)
+                }
+            }
+            
+            profile.add(blockableListener)
+            
+            self.profiles[message.id] = profile
+            
+            self.handle(message: message)
+        }
+        
+        
+        func validateAndHandle(_ message: GiggilMessage) {
+            guard case let .data(sender) = message.claims[.sender]
+                else { return }
+            
+            if self.profiles[Hash(sender)]?.session.verify(message) ?? false {
+                self.handle(message: message)
+            }
+        }
+        
         queue.async {
             switch message.tid {
             case SESSION_MESSAGE:
                 
-                self.newProfile(message)
+                newProfile(message)
                 
             case PROFILE_NAME_MESSAGE,
                  REVOKE_MESSAGE:
                 self.updateProfile(message)
                 
             default:
-                self.validateAndHandle(message)
+                validateAndHandle(message)
             }
             
             guard case let .data(ID) = message.claims[.object]

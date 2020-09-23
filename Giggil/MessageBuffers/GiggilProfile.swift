@@ -42,22 +42,13 @@ class GiggilProfile: MessageBuffer {
                 
                 self.messages[message.id] = message
                 
-                switch message.tid {
-                case REVOKE_MESSAGE:
-                    guard case let .data(revoked) = message.claims[.prev]
-                        else { fatalError() }
-                    
-                    self.revoked[Bytes(revoked)] = true
-                default:
-                    break
+                if let revoke = message as? RevokeMessage {
+                    self.revoked[ revoke.prev ] = true
                 }
             }
         }
     }
 }
-
-
-import Sodium
 
 extension GiggilProfile {
     
@@ -71,10 +62,8 @@ extension GiggilProfile {
                     continue
                 }
                 
-                if message.tid == PROFILE_NAME_MESSAGE {
-                    if case let .text(name) = message.claims[.name] {
-                        names.append(name)
-                    }
+                if let nameMessage = message as? ProfileNameMessage {
+                    names.append(nameMessage.name)
                 }
             }
             

@@ -11,11 +11,6 @@ import Foundation
 @testable import Giggil
 import Sodium
 
-func randomString(length: Int) -> String {
-  let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-  return String((0..<length).map{ _ in letters.randomElement()! })
-}
-
 func randomKey() -> Sign.KeyPair {
     return sodium.sign.keyPair()!
 }

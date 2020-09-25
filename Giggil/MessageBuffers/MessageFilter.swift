@@ -22,6 +22,9 @@ func || <T, U>(
         
 }
 
+protocol messageFilter {
+    func filter(_ : GiggilMessage ) -> GiggilMessage?
+}
 
 func Signed (_ message: GiggilMessage?) -> GiggilMessage? {
     if message?.signature != nil {

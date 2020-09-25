@@ -10,7 +10,7 @@ import Foundation
 import MessageKit
 import Sodium
 
-class ProfileCollector: MessageBuffer, MessageListener {
+class ProfileCollector: MessageBuffer {
     
     var profiles = [Hash:(profile: GiggilProfile, blocked: Bool)]()
     var order = [Hash]()
@@ -20,16 +20,6 @@ class ProfileCollector: MessageBuffer, MessageListener {
     func blockProfile(ID: Hash) {
         queue.async {
             self.profiles[ID]?.blocked = true
-        }
-    }
-    
-    func updateProfile(_ message: GiggilMessage) {
-        queue.async {
-            
-            guard case let .data(ID) = message.claims[.object]
-                else { return }
-            
-            self.profiles[Bytes(ID)]?.profile.listener(message)
         }
     }
     
@@ -51,57 +41,61 @@ class ProfileCollector: MessageBuffer, MessageListener {
         
         return Sender(senderId: IDString, displayName: profile.name)
     }
-    
+}
+
+extension ProfileCollector : MessageListener {
+        
     func listener(_ message: GiggilMessage) {
         
-        func newProfile(_ message: GiggilMessage) {
-            let profile = GiggilProfile(seed: message)!
-            
-            func blockableListener(message:GiggilMessage) {
-                self.queue.async {
-                    if self.profiles[ profile.id ]?.blocked ?? false {
-                        return
-                    }
-                    
-                    self.handle(message: message)
-                }
-            }
-            
-            profile.add(blockableListener)
-            
-            self.profiles[message.id]?.profile = profile
-            
-            self.handle(message: message)
-        }
-        
-        
-        func validateAndHandle(_ message: GiggilMessage) {
-            guard case let .data(sender) = message.claims[.sender]
-                else { return }
-            
-            if self.profiles[Hash(sender)]?.profile.session.verify(message) ?? false {
-                self.handle(message: message)
+        func newProfile(_ message: SessionMessage) {
+            let profile = GiggilProfile(message)
+
+            queue.async {
+                self.profiles[message.id] = (profile, false)
             }
         }
         
-        queue.async {
-            switch message {
-            case is SessionMessage:
-                
-                newProfile(message)
-                
-            case is ProfileNameMessage,
-                 is RevokeMessage:
-                self.updateProfile(message)
-                
-            default:
-                validateAndHandle(message)
-            }
-            
+        func updateProfile(_ message: GiggilMessage) {
             guard case let .data(ID) = message.claims[.object]
-                else { return }
+                    else { return }
+            queue.async {
+                self.profiles[Bytes(ID)]?.profile.listener(message)
+            }
+        }
+        
+        switch message {
+        case is SessionMessage:
             
-            self.moveToTop(Bytes(ID))
+            newProfile(message as! SessionMessage)
+            
+        case is ProfileNameMessage,
+             is RevokeMessage:
+            updateProfile(message)
+            
+        default:
+            break
+        }
+        
+        if self.filter(message) == nil { return }
+
+        self.handle(message: message)
+    
+        guard case let .data(ID) = message.claims[.object]
+            else { return }
+        
+        self.moveToTop(Bytes(ID))
+    
+    }
+}
+
+extension ProfileCollector: messageFilter {
+    func filter(_ message: GiggilMessage) -> GiggilMessage? {
+        queue.sync {
+            for (profile, blocked) in profiles.values {
+                if blocked { continue }
+                if profile.filter(message) != nil { return message }
+            }
+            return nil
         }
     }
 }

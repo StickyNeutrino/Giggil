@@ -46,16 +46,6 @@ class GiggilProfileTests: XCTestCase {
         XCTAssert(profile != nil, session.original)
     }
     
-    func testInitFailure() {
-        for message in allMessages {
-            let profile = GiggilProfile(seed: message)
-            
-            if message.tid != SESSION_MESSAGE {
-                XCTAssert( profile == nil )
-            }
-        }
-    }
-    
     func testOnlyValidMessagesPass() {
         let keys = randomKey()
         
@@ -177,7 +167,7 @@ class GiggilProfileTests: XCTestCase {
         
         let revoke = RevokeMessage(object: profile.id, prev: valid.id).sign(keys)!
         
-        let revoked2 = RevokeMessage(object: profile.id, prev: valid.id).sign(keys)!
+        let revoked2 = RevokeMessage(object: profile.id, prev: revoke.id).sign(keys)!
 
         let expectation = XCTestExpectation()
         

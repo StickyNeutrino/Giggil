@@ -17,12 +17,6 @@ func randomKey() -> Sign.KeyPair {
 
 class GiggilProfileTests: XCTestCase {
     
-    func randomNameMessage(session: SessionMessage) -> ProfileNameMessage {
-        let name = randomString(length: .random(in: 1...1024))
-
-        return ProfileNameMessage(object: session.id, name: name)
-    }
-    
     func testUnsignedSessionFails() {
         let session = SessionMessage(keys: randomKey())
         

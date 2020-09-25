@@ -36,16 +36,29 @@ class GiggilProfile: MessageBuffer {
     }
     
     func listener(_ message: GiggilMessage) {
-        queue.async {
-            if self.session.verify(message) {
-                self.handle(message: message)
-                
-                self.messages[message.id] = message
+            if filter(message) != nil {
+                queue.async {
+                    self.messages[message.id] = message
+                }
                 
                 if let revoke = message as? RevokeMessage {
                     self.revoked[ revoke.prev ] = true
                 }
+                
+                if filter(message) != nil {
+                    self.handle(message: message)
+                }
             }
+        
+    }
+}
+
+extension GiggilProfile: messageFilter {
+    func filter(_ message: GiggilMessage) -> GiggilMessage? {
+        queue.sync {
+            if revoked[message.id] ?? false { return nil}
+            if session.verify(message) { return message }
+            return nil
         }
     }
 }

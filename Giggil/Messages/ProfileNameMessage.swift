@@ -40,7 +40,7 @@ extension ProfileNameMessage {
     }
     
     var name: String {
-        guard case let .text(name) = claims[.key]
+        guard case let .text(name) = claims[.name]
             else { fatalError() }
         
         return name

@@ -76,32 +76,12 @@ class GiggilMessage {
     }
 }
 
-extension GiggilMessage: Comparable, Hashable {
-    static func < (lhs: GiggilMessage, rhs: GiggilMessage) -> Bool {
-        guard let result = sodium.utils.compare(lhs.id, rhs.id)
-            else { fatalError() }
-        
-        switch result {
-        case -1:
-            return false
-        case 0:
-            return false
-        case 1:
-            return true
-        default:
-            fatalError()
-        }
-    }
-    
+extension GiggilMessage {
     static func == (lhs: GiggilMessage, rhs: GiggilMessage) -> Bool {
         guard let result = sodium.utils.compare(lhs.id, rhs.id)
             else { fatalError() }
         
         return result == 0
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
     }
 }
 

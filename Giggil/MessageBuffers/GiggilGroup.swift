@@ -32,7 +32,7 @@ class GiggilGroup: MessageBuffer, MessageListener {
                     case is SessionMessage:
                         self.messages[message.id] = (message, false)
                     case is RevokeMessage:
-                        self.revoke(message)
+                        self.revoke(message as! RevokeMessage)
                     case is InviteMessage:
                         self.messages[message.id] = (message, false)
                         
@@ -65,14 +65,10 @@ class GiggilGroup: MessageBuffer, MessageListener {
         return false
     }
     
-    private func revoke(_ message: GiggilMessage) {
-        if !checkObject(message) { return }
-        if !checkSender(message) { return }
+    private func revoke(_ revoke: RevokeMessage) {
+        if self.filter(revoke) == nil { return }
         
-        guard case let .data(revoked) = message.claims[.prev]
-            else { fatalError() }
-        
-        self.messages[Hash(revoked)]?.revoked = true
+        self.messages[ revoke.prev ]?.revoked = true
     }
     
     private func canSend(_ ID: Hash) -> Bool {

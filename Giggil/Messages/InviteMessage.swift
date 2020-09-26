@@ -15,7 +15,7 @@ let INVITE_CLAIMS: [claimKeys] = [
     .next,
 ]
 
-let INVITE_MESSAGE = tidCalc(claims: TEXT_CLAIMS)!
+let INVITE_MESSAGE = tidCalc(claims: INVITE_CLAIMS)!
 
 class InviteMessage : GiggilMessage {
     required init?(orig: String) {

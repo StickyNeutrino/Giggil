@@ -84,9 +84,23 @@ class GiggilProfileTests: XCTestCase {
         
     }
     
-    func testDefaultName() {
+    func testName() {
+        let keys = randomKey()
+                      
+        let session = SessionMessage(orig: SessionMessage(keys: keys).sign(keys)!.original)!
+
+        let profile = GiggilProfile(session)
         
+        let name = ProfileNameMessage(object: profile.id, name: "A Name").sign(keys)!
+        
+        XCTAssert(profile.name == "Unknown User")
+        
+        profile.listener(name)
+        
+        XCTAssert(profile.name == "A Name")
     }
+    
+    
     
     func testRevokesBlock() {
         let keys = randomKey()

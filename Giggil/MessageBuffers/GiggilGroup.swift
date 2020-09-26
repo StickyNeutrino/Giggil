@@ -26,7 +26,7 @@ class GiggilGroup: MessageBuffer, MessageListener {
     }
     
     func listener(_ message: GiggilMessage) {
-            if self.filter(message) != nil {
+            if filter(message) != nil {
                 queue.async {
                     switch message {
                     case is SessionMessage:
@@ -43,7 +43,7 @@ class GiggilGroup: MessageBuffer, MessageListener {
                 }
             }
             
-            if self.filter(message) != nil { self.handle(message: message) }
+            if filter(message) != nil { handle(message: message) }
     }
     
     private func checkObject(_ message: GiggilMessage) -> Bool {

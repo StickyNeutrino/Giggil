@@ -76,7 +76,7 @@ class GiggilMessage {
     }
 }
 
-extension GiggilMessage {
+extension GiggilMessage: Equatable {
     static func == (lhs: GiggilMessage, rhs: GiggilMessage) -> Bool {
         guard let result = sodium.utils.compare(lhs.id, rhs.id)
             else { fatalError() }

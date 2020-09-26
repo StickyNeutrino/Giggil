@@ -16,6 +16,8 @@ class GiggilGroup: MessageBuffer, MessageListener {
     
     let queue = DispatchQueue(label: "Giggil.Group.queue")
     
+    let profileCollector = ProfileCollector()
+    
     init(_ charter: CharterMessage) {
         
         self.charter = charter
@@ -24,17 +26,24 @@ class GiggilGroup: MessageBuffer, MessageListener {
     }
     
     func listener(_ message: GiggilMessage) {
-        queue.async {
-            switch message.tid {
-            case SESSION_MESSAGE:
-                self.messages[message.id] = (message, false)
-            case REVOKE_MESSAGE:
-                self.revoke(message)
-            default:
-                break
-                
+            if self.filter(message) != nil {
+                queue.async {
+                    switch message {
+                    case is SessionMessage:
+                        self.messages[message.id] = (message, false)
+                    case is RevokeMessage:
+                        self.revoke(message)
+                    case is InviteMessage:
+                        self.messages[message.id] = (message, false)
+                        
+                    default:
+                        self.messages[message.id] = (message, false)
+                        
+                    }
+                }
             }
-        }
+            
+            if self.filter(message) != nil { self.handle(message: message) }
     }
     
     private func checkObject(_ message: GiggilMessage) -> Bool {
@@ -68,35 +77,71 @@ class GiggilGroup: MessageBuffer, MessageListener {
     
     private func canSend(_ ID: Hash) -> Bool {
         
-        let invites = messages.compactMap { (arg0) -> InviteMessage? in
+        if ID == charter.owner { return true }
+        
+        
+        let invites = messages.values.compactMap{ (arg0) -> InviteMessage? in
             
-            let (messsage, revoked) = arg0.value
-            
+            let (messsage, revoked) = arg0
             if revoked { return nil }
-            
             if let invite = messsage as? InviteMessage {
-                 return invite.next == ID ? invite : nil
+                if invite.next == ID { return invite}
             }
-            
             return nil
-            
         }
-    
+        
         for invite in invites {
-            if canSend( invite.sender ) {
-                return true
+                if invite.next != ID { continue }
+                if invite.sender == charter.owner {
+                    return true
+                }
+                if canSend( invite.sender ) {
+                    return true
+                }
+
+              
             }
-            
-            if invite.sender == charter.owner {
-                return true
-            }
-        }
         
         return false
     }
     
     private func invite(_ message: GiggilMessage) {
         
+    }
+}
+
+
+extension GiggilGroup: messageFilter {
+    func filter(_ message: GiggilMessage) -> GiggilMessage? {
+        
+        switch message {
+        case is CharterMessage:
+            if message == charter { return message }
+        case is InviteMessage:
+            if let sender = (message as? InviteMessage)?.sender {
+                return queue.sync {
+                    if canSend(sender) { return message }
+                    return nil
+                }
+            }
+        case is TextMessage: //Change to grouptext
+            if let text = message as? TextMessage {
+                return queue.sync {
+                    if canSend(text.sender) { return text }
+                    return nil
+                }
+            }
+        default:
+            break
+        }
+        return nil
+    }
+    
+    func isGroupMessage(_ message: GiggilMessage) -> GiggilMessage? {
+        if (message is CharterMessage) || (message is TextMessage){
+            return message
+        }
+        return nil
     }
 }
 /*

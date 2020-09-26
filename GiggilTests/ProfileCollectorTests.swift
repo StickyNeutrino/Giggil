@@ -72,21 +72,6 @@ class ProfileCollectorTests: XCTestCase {
         sleep(1) //FIXME
     }
     
-    func testMessagesWaitForSession() {
-       
-        
-        let expect = XCTestExpectation()
-
-        pc.add { (message) in
-            if message == self.validText { expect.fulfill() }
-        }
-        
-        pc.listener(validText)
-        pc.listener(profile.session)
-        
-        wait(for: [expect], timeout: 1)
-    }
-    
     func testBlock() {
         pc.listener(profile.session)
 

@@ -78,7 +78,7 @@ class GiggilGroupTests: XCTestCase {
         group.add { (message) in
             if message == text { expectation.fulfill() }
         }
-        
+        group.listener(newUser)
         group.listener(invite)
         group.listener(text)
         

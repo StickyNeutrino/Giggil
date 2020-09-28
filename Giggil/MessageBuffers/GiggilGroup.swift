@@ -26,6 +26,9 @@ class GiggilGroup: MessageBuffer, MessageListener {
     }
     
     func listener(_ message: GiggilMessage) {
+            
+            queue.sync { self.profileCollector.listener(message) }
+        
             if filter(message) != nil {
                 queue.async {
                     switch message {
@@ -44,13 +47,6 @@ class GiggilGroup: MessageBuffer, MessageListener {
             }
             
             if filter(message) != nil { handle(message: message) }
-    }
-    
-    private func checkObject(_ message: GiggilMessage) -> Bool {
-        guard case let .data(object) = message.claims[.object]
-            else { return false }
-        
-        return Hash(object) == charter.id
     }
     
     private func checkSender(_ message: GiggilMessage) -> Bool {
@@ -109,6 +105,23 @@ class GiggilGroup: MessageBuffer, MessageListener {
 
 extension GiggilGroup: messageFilter {
     func filter(_ message: GiggilMessage) -> GiggilMessage? {
+        
+        if Signed(message) == nil { return nil }
+        if (message.id == self.charter.owner) { return message }
+        
+        switch message {
+        case is TextMessage:
+            if let text = message as? TextMessage {
+                if (text.sender == self.charter.owner) { return message }
+            }
+        default:
+            break
+        }
+        
+        if ( queue.sync { self.profileCollector.filter(message) == nil } ) {
+            return nil
+        }
+        
         
         switch message {
         case is CharterMessage:

@@ -113,6 +113,7 @@ extension GiggilGroup: messageFilter {
         case is TextMessage:
             if let text = message as? TextMessage {
                 if (text.sender == self.charter.owner) { return message }
+                if ( queue.sync { canSend( text.sender ) } ) { return message }
             }
         default:
             break

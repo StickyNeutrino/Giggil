@@ -21,6 +21,7 @@ class GiggilGroupTests: XCTestCase {
     
     override func setUp() {
         group = GiggilGroup(charter)
+        group.listener(owner)
     }
     
     func testOwnerMessagesPass() {

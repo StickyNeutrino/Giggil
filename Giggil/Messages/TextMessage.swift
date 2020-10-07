@@ -18,11 +18,15 @@ class TextMessage : GiggilMessage {
         }
     }
     
-    init(sender: Hash, text: String) {
+    convenience init(sender: Hash, text: String) {
+        self.init(sender: sender, text: text, sent: Date())
+    }
+     
+    init(sender: Hash, text: String, sent: Date) {
         let claims: [claimKeys : claimValue] = [
                   .sender: .data(Data(sender)),
                   .text: .text(text),
-                  .sent: .date(Date())
+                  .sent: .date(sent)
               ]
               
         super.init(claims: claims)
